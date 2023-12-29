@@ -25,7 +25,7 @@ jobs:
           git fetch
           git checkout main
           git config pull.rebase true
-          git pull -ff
+          git pull --rebase -ff
 
           # Update the environment
           rm -rf .venv
