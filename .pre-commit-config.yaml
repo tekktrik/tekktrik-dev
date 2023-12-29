@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: 2023 Alec Delaney
+# SPDX-License-Identifier: MIT
+
+repos:
+  - repo: https://github.com/python/black
+    rev: 23.12.1
+    hooks:
+      - name: Run black
+        id: black
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v2.1.0
+    hooks:
+      - name: Run REUSE
+        id: reuse
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - name: Check YAML
+        id: check-yaml
+      - name: Fix EOF issues
+        id: end-of-file-fixer
+      - name: Trim trailing whitespace
+        id: trailing-whitespace
+  - repo: local
+    hooks:
+      - name: Run pylint
+        id: pylint
+        entry: pylint
+        language: system
+        types: [python]
