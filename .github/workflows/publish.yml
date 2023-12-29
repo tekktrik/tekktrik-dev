@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: 2022 Alec Delaney
+#
+# SPDX-License-Identifier: MIT
+
+name: Publish Site CI
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  publish-website:
+    runs-on: ubuntu-latest
+    if: github.ref == 'ref/heads/main'
+    steps:
+    - name: Clone the repository
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+    - name: Delete git folder
+      run: |
+        rm -rf .git
+    - name: Update and deploy on server
+      uses: appleboy/ssh-action@v1.0.1
+      with:
+        host: tekktrik.dev
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          # Change to directory
+          cd /home/tekktrik-dev
+
+          # Update the repository
+          git fetch
+          git checkout main
+          git pull -ff
+
+          # Update the environment
+          rm -rf .venv
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          deactivate
+
+          # Reload supervisor
+          sudo supervisorctl reload
