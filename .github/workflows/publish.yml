@@ -25,6 +25,7 @@ jobs:
           # Update the repository
           git fetch
           git checkout main
+          git config pull.rebase true
           git pull -ff
 
           # Update the environment
