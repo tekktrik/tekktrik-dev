@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+# SPDX-FileCopyrightText: 2023 Alec Delaney
+# SPDX-License-Identifier: MIT
 
-import json
 
 app = Flask(__name__)
 
