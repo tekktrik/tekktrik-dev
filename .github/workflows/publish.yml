@@ -12,13 +12,6 @@ jobs:
   publish-website:
     runs-on: ubuntu-latest
     steps:
-    - name: Clone the repository
-      uses: actions/checkout@v4
-      with:
-        submodules: true
-    - name: Delete git folder
-      run: |
-        rm -rf .git
     - name: Update and deploy on server
       uses: appleboy/ssh-action@v1.0.1
       with:
@@ -36,7 +29,7 @@ jobs:
 
           # Update the environment
           rm -rf .venv
-          python -m venv .venv
+          python3 -m venv .venv
           source .venv/bin/activate
           pip install -r requirements.txt
           deactivate
