@@ -1,6 +1,11 @@
+# SPDX-FileCopyrightText: 2023 Alec Delaney
+# SPDX-License-Identifier: MIT
+
+# Compiled files
 __pycache__
 *.pyc
 
+# Virtual environment files
 venv
 .venv
 .env
