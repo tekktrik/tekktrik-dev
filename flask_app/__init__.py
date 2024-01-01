@@ -49,4 +49,4 @@ def menorah_settings():
         return send_file(
             file_bytesio, as_attachment=True, download_name="settings.json"
         )
-    return render_template("index.html", input_form=input_form)
+    return render_template("menorah/settings.html", input_form=input_form)
