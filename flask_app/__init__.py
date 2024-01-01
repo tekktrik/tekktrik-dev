@@ -34,7 +34,7 @@ def index():
 
 
 @app.route("/", subdomain="menorah", methods=["GET", "POST"])
-def menorah_indexindex():
+def menorah_index():
     """Route for index (landing page) for menorah subdomain"""
     input_form = MenorahSetupForm()
     if input_form.validate_on_submit():
