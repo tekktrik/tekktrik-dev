@@ -8,11 +8,10 @@ Author: Alec Delaney
 """
 
 import json
-import tempfile
 import io
 import jinja2
 
-from flask import Flask, render_template, send_file, after_this_request
+from flask import Flask, render_template, send_file
 from flask_bootstrap import Bootstrap5
 
 from flask_app.forms import MenorahSetupForm
