@@ -13,6 +13,8 @@ import jinja2
 
 from flask import Flask, render_template, send_file
 from flask_bootstrap import Bootstrap5
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 from flask_app.forms import MenorahSetupForm
 from flask_app.helpers import generate_settings_json
@@ -26,6 +28,15 @@ app.config["SECRET_KEY"] = config["SECRET_KEY"]
 
 bootstrap = Bootstrap5(app)
 
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["50/second"],
+    storage_uri="redis://localhost:6379",
+    storage_options={"socket_connect_timeout": 30},
+    strategy="moving-window",
+)
+
 
 @app.route("/")
 def index():
@@ -34,6 +45,7 @@ def index():
 
 
 @app.route("/menorah/settings", methods=["GET", "POST"])
+@limiter.limit("10/second", key_func=lambda: "menorah-settings")
 def menorah_settings():
     """Route for creating menorah settings file"""
     input_form = MenorahSetupForm()
