@@ -13,13 +13,17 @@
         {{ bootstrap.load_css() }}
     </head>
     <body>
-        <h1>Hello, world!</h1>
+        <div class="container">
+        <h1>Create Menorah Settings</h1>
+        <p>
+            Enter your zipcode to generate a settings file for your CircuitPythonukiah!
+            Please note that your zipcode <b>is not stored or retained</b>, and is used only
+            to fetch the correct candle lighting times.
+        </p>
         <br/>
         {{ render_form(input_form) }}
         <br/>
-        {% if download_file %}
-        { render_form(download_form) }
-        {% endif %}
+        </div>
         {{ bootstrap.load_js() }}
     </body>
 </html>
