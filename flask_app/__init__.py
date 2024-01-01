@@ -22,6 +22,7 @@ app = Flask(__name__)
 
 with open("/etc/config.json", encoding="utf-8") as jsonfile:
     config = json.load(jsonfile)
+
 app.config["SECRET_KEY"] = config["SECRET_KEY"]
 
 bootstrap = Bootstrap5(app)
@@ -33,9 +34,9 @@ def index():
     return "<h1>Hello, world!</h1>"
 
 
-@app.route("/", subdomain="menorah", methods=["GET", "POST"])
-def menorah_index():
-    """Route for index (landing page) for menorah subdomain"""
+@app.route("/menorah/settings", methods=["GET", "POST"])
+def menorah_settings():
+    """Route for creating menorah settings file"""
     input_form = MenorahSetupForm()
     if input_form.validate_on_submit():
         zipcode = input_form.data["zipcode"]
