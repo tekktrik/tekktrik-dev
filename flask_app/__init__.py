@@ -11,7 +11,7 @@ import json
 import io
 import jinja2
 
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, send_file, redirect
 from flask_bootstrap import Bootstrap5
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -41,12 +41,17 @@ limiter = Limiter(
 @app.route("/")
 def index():
     """Route for index (landing page)"""
-    return "<h1>Hello, world!</h1>"
+    return render_template("index.html")
 
 
-@app.route("/menorah/settings", methods=["GET", "POST"])
-@limiter.limit("10/second", key_func=lambda: "menorah-settings")
+@app.route("/set-menorah")
 def menorah_settings():
+    return redirect("/projects/menorah/settings")
+
+
+@app.route("/projects/menorah/settings", methods=["GET", "POST"])
+@limiter.limit("10/second", key_func=lambda: "menorah-settings")
+def project_menorah_settings():
     """Route for creating menorah settings file"""
     input_form = MenorahSetupForm()
     if input_form.validate_on_submit():
@@ -61,4 +66,4 @@ def menorah_settings():
         return send_file(
             file_bytesio, as_attachment=True, download_name="settings.json"
         )
-    return render_template("menorah/settings.html", input_form=input_form)
+    return render_template("projects/menorah/settings.html", input_form=input_form)
