@@ -24,7 +24,7 @@ app = Flask(__name__)
 with open("/etc/config.json", encoding="utf-8") as jsonfile:
     config = json.load(jsonfile)
 
-app.config["SECRET_KEY"] = config["SECRET_KEY"]
+app.config["WTF_CSRF_ENABLED"] = False
 
 bootstrap = Bootstrap5(app)
 
