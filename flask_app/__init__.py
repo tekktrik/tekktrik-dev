@@ -46,6 +46,7 @@ def index():
 
 @app.route("/set-menorah")
 def menorah_settings():
+    """Route for shortcut to menorah settings page"""
     return redirect("/projects/menorah/settings")
 
 
