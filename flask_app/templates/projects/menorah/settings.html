@@ -1,0 +1,24 @@
+<!--
+    SPDX-FileCopyrightText: 2023 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+{% extends "layout/_layout.html" %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Menorah Settings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Create Menorah Settings</h1>
+    <p>
+        Enter your zipcode to generate a settings file for your CircuitPythonukiah!
+        Please note that your zipcode <b>is not stored or retained</b>, and is used only
+        to fetch the correct candle lighting times.
+    </p>
+    <br/>
+    {{ render_form(input_form) }}
+    <br/>
+</div>
+{% endblock %}
