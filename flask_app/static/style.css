@@ -2,3 +2,20 @@
  * SPDX-FileCopyrightText: 2024 Alec Delaney
  * SPDX-License-Identifier: MIT
  */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.sticky-footer {
+    position: absolute;
+    bottom: 0;
+    padding-top: 10px;
+    width: 100%;
+    color: white;
+}
+
+body > .container {
+    padding: 100px 0;
+}
