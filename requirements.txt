@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2023 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-flask
-flask-wtf
-bootstrap-flask
-flask-limiter[redis]
-gunicorn[eventlet]
+flask~=3.0
+flask-wtf~=1.2
+bootstrap-flask~=2.3
+flask-limiter[redis]~=3.5
+gunicorn[eventlet]~=21.2
