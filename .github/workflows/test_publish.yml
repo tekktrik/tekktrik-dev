@@ -8,7 +8,7 @@ on:
     branches: ['main']
 
 jobs:
-  publish-website:
+  publish-test-website:
     runs-on: ubuntu-latest
     steps:
     - name: Update and deploy on server
