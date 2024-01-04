@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2024 Alec Delaney
+# SPDX-License-Identifier: MIT
+
+name: Unpublish Test Site
+
+on:
+  pull_request:
+    types: [closed]
+    branches: ['main']
+
+jobs:
+  publish-website:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Stop on server
+      uses: appleboy/ssh-action@v1.0.1
+      with:
+        host: tekktrik.dev
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          # Change to directory
+          cd /home/test-tekktrik-dev
+
+          # Update the repository
+          git fetch
+          git checkout main
+          git config pull.rebase true
+          git pull --rebase -ff
+
+          # Update the environment
+          rm -rf .venv
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          deactivate
+
+          # Stop supervisor
+          sudo supervisorctl stop test_flask_app
