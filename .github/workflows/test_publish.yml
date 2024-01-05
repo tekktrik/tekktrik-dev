@@ -22,7 +22,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           # Change to directory
-          cd /home/test-tekktrik-dev
+          cd /srv/www/test-tekktrik-dev
 
           # Update the repository
           git fetch
