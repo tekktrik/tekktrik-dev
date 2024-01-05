@@ -10,6 +10,8 @@ on:
 jobs:
   publish-test-website:
     runs-on: ubuntu-latest
+    environment:
+      name: testing
     steps:
     - name: Update and deploy on server
       uses: appleboy/ssh-action@v1.0.1
