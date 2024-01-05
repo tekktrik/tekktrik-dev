@@ -6,10 +6,13 @@ name: Publish Test Site
 on:
   pull_request:
     branches: ['main']
+  workflow_dispatch:
 
 jobs:
   publish-test-website:
     runs-on: ubuntu-latest
+    environment:
+      name: testing
     steps:
     - name: Update and deploy on server
       uses: appleboy/ssh-action@v1.0.1
@@ -23,7 +26,7 @@ jobs:
 
           # Update the repository
           git fetch
-          git checkout main
+          git checkout ${{ github.head_ref }}
           git config pull.rebase true
           git pull --rebase -ff
 
