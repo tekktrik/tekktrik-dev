@@ -23,7 +23,7 @@ jobs:
 
           # Update the repository
           git fetch
-          git checkout main
+          git checkout ${{ github.head_ref }}
           git config pull.rebase true
           git pull --rebase -ff
 
