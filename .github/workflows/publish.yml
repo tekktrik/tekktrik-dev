@@ -35,4 +35,4 @@ jobs:
           deactivate
 
           # Reload supervisor
-          sudo supervisorctl restart flask_app
+          supervisorctl restart flask_app
