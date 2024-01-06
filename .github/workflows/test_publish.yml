@@ -38,4 +38,4 @@ jobs:
           deactivate
 
           # Reload supervisor
-          sudo supervisorctl start test_flask_app
+          supervisorctl start test_flask_app
