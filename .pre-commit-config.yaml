@@ -7,6 +7,12 @@ repos:
     hooks:
       - name: Run black
         id: black
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Sort Python imports
+        args: ["--profile", "black", "--filter-files"]
   - repo: https://github.com/fsfe/reuse-tool
     rev: v2.1.0
     hooks:
