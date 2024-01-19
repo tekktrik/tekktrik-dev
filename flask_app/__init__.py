@@ -10,6 +10,7 @@ Author: Alec Delaney
 import datetime
 import io
 import json
+import math
 
 import dateutil.parser
 import jinja2
@@ -79,9 +80,13 @@ def recent() -> str:
     end_datetime = dateutil.parser.parse(contributions["endedAt"])
     start_datetime = dateutil.parser.parse(contributions["startedAt"])
     diff_datetime: datetime.timedelta = end_datetime - start_datetime
+    oldest_push = dateutil.parser.parse(repos["nodes"][-1]["pushedAt"])
+    current_datetime = datetime.datetime.now(datetime.UTC)
+    diff_oldest = current_datetime - oldest_push
     return render_template(
         "recent.html",
         repos=repos["nodes"],
         num_contributions=contributions["contributionCalendar"]["totalContributions"],
         duration_days=diff_datetime.days,
+        diff_oldest=math.ceil(diff_oldest.days / 365),
     )

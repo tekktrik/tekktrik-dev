@@ -33,7 +33,8 @@ query {
           }
         }
         openGraphImageUrl,
-        url
+        url,
+        pushedAt
       }
     }
   }

@@ -13,7 +13,8 @@
 {% block title %}Recent Activity{% endblock %}
 
 {% block content %}
-<p class="lead text-center">Here are some of the {{ num_contributions }} contributions I've made over the last {{ duration_days }} days:</p>
+<p class="lead text-center">I've made {{ num_contributions }} contributions in the past {{ duration_days }} days!</p>
+<p class="text-center">Here are some that I've made in the last {{ diff_oldest }} years:</p>
 <div class="container">
     {% for repo in repos %}
         {% if loop.index % 2 == 1 %}
