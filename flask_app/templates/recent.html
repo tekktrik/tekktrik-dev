@@ -1,0 +1,40 @@
+<!--
+    SPDX-FileCopyrightText: 2024 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+<!--
+    SPDX-FileCopyrightText: 2024 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+{% extends "layout/_layout.html" %}
+
+{% block title %}Recent Activity{% endblock %}
+
+{% block content %}
+<p class="lead text-center">Here are some of the {{ num_contributions }} contributions I've made over the last {{ duration_days }} days:</p>
+<div class="container">
+    {% for repo in repos %}
+        {% if loop.index % 2 == 1 %}
+        <div class="row m-2">
+        {% endif %}
+            <div class="col-md-6">
+                <div class="card">
+                    <a href="{{ repo.url }}"><img src="{{ repo.openGraphImageUrl }}" class="card-img-top"/></a>
+                    <div class="card-body">
+                        {% if repo.languages.nodes|length == 0 %}
+                            <span class="badge badge-other-language">Other</span>
+                        {% endif %}
+                        {% for language in repo.languages.nodes %}
+                            <span class="badge badge-language badge-{{ language.name|replace('+', 'p')|lower }}">{{ language.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% if loop.index % 2 == 0 %}
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

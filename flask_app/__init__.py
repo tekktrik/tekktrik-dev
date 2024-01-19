@@ -7,17 +7,18 @@ Main entry point for the flask application
 Author: Alec Delaney
 """
 
-import json
+import datetime
 import io
-import jinja2
+import json
 
-from flask import Flask, render_template, send_file, redirect
+import jinja2
+from flask import Flask, Response, redirect, render_template, send_file
 from flask_bootstrap import Bootstrap5
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 from flask_app.forms import MenorahSetupForm
-from flask_app.helpers import generate_settings_json
+from flask_app.helpers import generate_settings_json, get_repo_info
 
 app = Flask(__name__)
 
@@ -39,20 +40,20 @@ limiter = Limiter(
 
 
 @app.route("/")
-def index():
+def index() -> str:
     """Route for index (landing page)"""
     return render_template("index.html")
 
 
 @app.route("/set-menorah")
-def menorah_settings():
+def menorah_settings() -> Response:
     """Route for shortcut to menorah settings page"""
     return redirect("/projects/menorah/settings")
 
 
 @app.route("/projects/menorah/settings", methods=["GET", "POST"])
 @limiter.limit("10/second", key_func=lambda: "menorah-settings")
-def project_menorah_settings():
+def project_menorah_settings() -> str:
     """Route for creating menorah settings file"""
     input_form = MenorahSetupForm()
     if input_form.validate_on_submit():
@@ -68,3 +69,18 @@ def project_menorah_settings():
             file_bytesio, as_attachment=True, download_name="settings.json"
         )
     return render_template("projects/menorah/settings.html", input_form=input_form)
+
+
+@app.route("/recent", methods=["GET"])
+def recent() -> str:
+    """Route for recent GitHub activity"""
+    contributions, repos = get_repo_info(config["GH_TOKEN"])
+    end_datetime = datetime.datetime.fromisoformat(contributions["endedAt"])
+    start_datetime = datetime.datetime.fromisoformat(contributions["startedAt"])
+    diff_datetime: datetime.timedelta = end_datetime - start_datetime
+    return render_template(
+        "recent.html",
+        repos=repos["nodes"],
+        num_contributions=contributions["contributionCalendar"]["totalContributions"],
+        duration_days=diff_datetime.days,
+    )

@@ -1,0 +1,40 @@
+query {
+  user (login: "tekktrik") {
+    contributionsCollection {
+      startedAt
+      endedAt
+      contributionCalendar {
+      	totalContributions
+      }
+    }
+    repositories (
+      first: 25,
+      orderBy: {
+        field: PUSHED_AT,
+        direction: DESC,
+      },
+      isArchived: false,
+      isLocked: false,
+      isFork: false,
+      visibility: PUBLIC,
+    ) {
+      nodes {
+        name,
+        owner {
+        	login
+        },
+        primaryLanguage {
+          name
+        },
+        languages (first: 5) {
+          totalCount,
+          nodes {
+            name
+          }
+        }
+        openGraphImageUrl,
+        url
+      }
+    }
+  }
+}

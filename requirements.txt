@@ -6,3 +6,4 @@ flask-wtf~=1.2
 bootstrap-flask~=2.3
 flask-limiter[redis]~=3.5
 gunicorn[eventlet]~=21.2
+requests~=2.31
