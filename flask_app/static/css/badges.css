@@ -8,31 +8,33 @@
 }
 
 .badge-python {
-    background-color: rgb(40, 44, 214);
+    background-color: rgb(52, 112, 162);
 }
 
 .badge-html {
-    background-color: orange;
+    background-color: rgb(219, 73, 37);
 }
 
 .badge-css {
-    background-color: yellowgreen;
+    background-color: rgb(82, 58, 118);
 }
 
 .badge-typescript {
-    background-color: blueviolet;
+    background-color: rgb(49, 120, 198);
 }
 
 .badge-javascript {
-    background-color: crimson;
+    background-color: rgb(241, 224, 90);
+    color: black;
 }
 
 .badge-shell {
-    background-color: green;
+    background-color: rgb(137, 224, 81);
+    color: black;
 }
 
 .badge-c {
-    background-color: deeppink;
+    background-color: rgb(85, 85, 85);
 }
 
 .badge-cpp {
