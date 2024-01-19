@@ -11,6 +11,7 @@ import datetime
 import io
 import json
 
+import dateutil.parser
 import jinja2
 from flask import Flask, Response, redirect, render_template, send_file
 from flask_bootstrap import Bootstrap5
@@ -75,8 +76,8 @@ def project_menorah_settings() -> str:
 def recent() -> str:
     """Route for recent GitHub activity"""
     contributions, repos = get_repo_info(config["GH_TOKEN"])
-    end_datetime = datetime.datetime.fromisoformat(contributions["endedAt"])
-    start_datetime = datetime.datetime.fromisoformat(contributions["startedAt"])
+    end_datetime = dateutil.parser.parse(contributions["endedAt"])
+    start_datetime = dateutil.parser.parse(contributions["startedAt"])
     diff_datetime: datetime.timedelta = end_datetime - start_datetime
     return render_template(
         "recent.html",
