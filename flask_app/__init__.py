@@ -12,6 +12,7 @@ import io
 import json
 import math
 
+import dateutil.tz
 import dateutil.parser
 import jinja2
 from flask import Flask, Response, redirect, render_template, send_file
@@ -81,7 +82,7 @@ def recent() -> str:
     start_datetime = dateutil.parser.parse(contributions["startedAt"])
     diff_datetime: datetime.timedelta = end_datetime - start_datetime
     oldest_push = dateutil.parser.parse(repos["nodes"][-1]["pushedAt"])
-    current_datetime = datetime.datetime.now(datetime.UTC)
+    current_datetime = datetime.datetime.now(dateutil.tz.UTC)
     diff_oldest = current_datetime - oldest_push
     return render_template(
         "recent.html",
