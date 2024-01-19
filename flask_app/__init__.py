@@ -12,8 +12,8 @@ import io
 import json
 import math
 
-import dateutil.tz
 import dateutil.parser
+import dateutil.tz
 import jinja2
 from flask import Flask, Response, redirect, render_template, send_file
 from flask_bootstrap import Bootstrap5
