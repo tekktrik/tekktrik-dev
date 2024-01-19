@@ -1,0 +1,44 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Alec Delaney
+ * SPDX-License-Identifier: MIT
+ */
+
+.badge-language {
+    background-color: lightskyblue;
+}
+
+.badge-python {
+    background-color: rgb(40, 44, 214);
+}
+
+.badge-html {
+    background-color: orange;
+}
+
+.badge-css {
+    background-color: yellowgreen;
+}
+
+.badge-typescript {
+    background-color: blueviolet;
+}
+
+.badge-javascript {
+    background-color: crimson;
+}
+
+.badge-shell {
+    background-color: green;
+}
+
+.badge-c {
+    background-color: deeppink;
+}
+
+.badge-cpp {
+    background-color: tan;
+}
+
+.badge-other-language {
+    background-color: grey;
+}
