@@ -8,6 +8,7 @@
 {% block title %}About Me{% endblock %}
 
 {% block content %}
+    <h2>Professional Experience</h2>
     <div class="accordion" id="jobAccordion">
         {% for jobs_list in jobs_lists %}
             {% set employer = jobs_list[0].employer %}
