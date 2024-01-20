@@ -14,11 +14,12 @@
             {% set employer = jobs_list[0].employer %}
             <div class="accordion-item">
                 <h3 class="accordion-header">
-                    <button class="accordion-button{% if loop.index != 1 %} collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ loop.index }}">
-                        {{ employer }}
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ loop.index }}">
+                        <strong>{{ employer }}</strong>:
+                        ({{ jobs_list[-1].startDate }} - {{ jobs_list[0].endDate }})
                     </button>
                 </h3>
-                <div class="accordion-collapse collapse{% if loop.index == 1 %} show{% endif %}" id="job{{ loop.index }}" data-bs-parent="#jobAccordion">
+                <div class="accordion-collapse collapse" id="job{{ loop.index }}" data-bs-parent="#jobAccordion">
                     <div class="accordion-body">
                         {% for job in jobs_list %}
                         <div>
