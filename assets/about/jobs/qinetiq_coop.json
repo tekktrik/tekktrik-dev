@@ -1,0 +1,20 @@
+{
+    "title": "Systems Engineering Co-op",
+    "employer": "QinetiQ North America",
+    "location": "Waltham, MA, USA",
+    "startDate": "01/2014",
+    "endDate": "06/2014",
+    "time": "Full-Time (Co-op)",
+    "duties": [
+        "Authoring testing procedure documents, including plans and procedures",
+        "Contacting third-party vendors to discuss and organize product testing",
+        "Completing requirements traceability report, verifying that the product met all contractual requirements"
+    ],
+    "skills": [
+        "traceability matriix",
+        "test management",
+        "test planning",
+        "test protocols",
+        "DOORS"
+    ]
+}

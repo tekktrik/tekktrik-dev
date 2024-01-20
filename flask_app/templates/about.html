@@ -1,0 +1,46 @@
+<!--
+    SPDX-FileCopyrightText: 2024 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+{% extends "layout/_layout.html" %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+    <h2>Professional Experience</h2>
+    <div class="accordion" id="jobAccordion">
+        {% for jobs_list in jobs_lists %}
+            {% set employer = jobs_list[0].employer %}
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button{% if loop.index != 1 %} collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ loop.index }}">
+                        {{ employer }}
+                    </button>
+                </h3>
+                <div class="accordion-collapse collapse{% if loop.index == 1 %} show{% endif %}" id="job{{ loop.index }}" data-bs-parent="#jobAccordion">
+                    <div class="accordion-body">
+                        {% for job in jobs_list %}
+                        <div>
+                            <h4>{{ job.title }}</h4>
+                            <h6>{{ job.startDate }} - {{ job.endDate }}</h6>
+                            <p>[<i>{{ job.time }}</i>]</p>
+                            <ul class="list-group">
+                                {% for duty in job.duties %}
+                                <li class="list-group-item">
+                                    {{ duty }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% for skill in job.skills %}
+                        <span class="badge bg-primary my-2">{{ skill }}</span>
+                        {% endfor %}
+                        {% if loop.index != jobs_list|length %}<hr/>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

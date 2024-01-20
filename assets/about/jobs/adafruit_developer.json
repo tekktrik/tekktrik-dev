@@ -1,0 +1,22 @@
+{
+    "title": "Developer",
+    "employer": "Adafruit",
+    "location": "Remote",
+    "startDate": "06/2022",
+    "endDate": "08/2023",
+    "time": "Part-Time",
+    "duties": [
+        "Developing Python libraries for use with CircuitPython, an implementation of Python for microcontrollers",
+        "Maintaining automated tooling and scripts used to build and package libraries",
+        "Managing continuous integration/development infrastructure throughout the CircuitPython codebase",
+        "Reviewing pull requests from maintainers and contributors to open source libraries and tooling repositories"
+    ],
+    "skills": [
+        "Python",
+        "Bash",
+        "continuous integration",
+        "CircuitPython",
+        "git",
+        "GitHub"
+    ]
+}

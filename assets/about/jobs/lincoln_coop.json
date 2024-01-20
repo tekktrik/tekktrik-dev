@@ -1,0 +1,18 @@
+{
+    "title": "Mechanical Engineering Co-op",
+    "employer": "MIT Lincoln Laboratories",
+    "location": "Lexington, MA, USA",
+    "startDate": "01/2015",
+    "endDate": "06/2015",
+    "time": "Full-Time (Co-op)",
+    "duties": [
+        "Prototyping deployable structures for space application",
+        "Designing iterations of prototypes in SolidWorks",
+        "Utilizing 3D printers to print models for observation and testing feasibility of various manufacturing methods ",
+        "Presenting prototypes to an interdisciplinary team to showcase the project, its design guidelines, and iterations"
+    ],
+    "skills": [
+        "SolidWorks",
+        "3D printing"
+    ]
+}

@@ -11,6 +11,7 @@ import datetime
 import io
 import json
 import math
+import pathlib
 
 import dateutil.parser
 import dateutil.tz
@@ -21,7 +22,13 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 from flask_app.forms import MenorahSetupForm
-from flask_app.helpers import generate_settings_json, get_repo_info
+from flask_app.helpers import (
+    consolidate_sorted_jobs,
+    generate_settings_json,
+    get_repo_info,
+    sort_grouped_jobs,
+    sort_jobs_start_date,
+)
 
 app = Flask(__name__)
 
@@ -91,3 +98,20 @@ def recent() -> str:
         duration_days=diff_datetime.days,
         diff_oldest=math.ceil(diff_oldest.days / 365),
     )
+
+
+@app.route("/about", methods=["GET"])
+def about() -> str:
+    """Route for about me page"""
+    jobs_path = pathlib.Path("assets/about/jobs")
+    jobs = []
+    for job_path in jobs_path.glob("*.json"):
+        with open(job_path, mode="r", encoding="utf-8") as jobfile:
+            job_obj = json.load(jobfile)
+            if job_obj["endDate"] is None:
+                job_obj["endDate"] = "current"
+            jobs.append(job_obj)
+    jobs.sort(key=sort_jobs_start_date, reverse=True)
+    jobs_lists = consolidate_sorted_jobs(jobs)
+    jobs_lists.sort(key=sort_grouped_jobs, reverse=True)
+    return render_template("about.html", jobs_lists=jobs_lists)

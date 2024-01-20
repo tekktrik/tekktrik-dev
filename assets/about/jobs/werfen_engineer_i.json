@@ -1,0 +1,21 @@
+{
+    "title": "Engineer I",
+    "employer": "Werfen",
+    "location": "Bedford, MA, USA",
+    "startDate": "10/2018",
+    "endDate": "10/2020",
+    "time": "Full-Time",
+    "duties": [
+        "Creating and maintaining new pilot fabrication area and process, for prototype disposable blood gas analyzer product, including introducing manufacturing operators to the space and procedures",
+        "Owning 3D printed prototype CAD and configuration, updating and organizing the fabrication of new parts per the needs of the larger project team",
+        "Designing test fixtures used to fabricate and test developmental disposable components, both from a hardware and software perspective",
+        "Providing mechanical engineer support to the broader project team, especially process and systems engineering teams"
+    ],
+    "skills": [
+        "Python",
+        "process control",
+        "CAD design",
+        "lean manufacturing",
+        "3D printing"
+    ]
+}
