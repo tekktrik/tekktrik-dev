@@ -1,0 +1,20 @@
+{
+    "title": "Mechanical Engineering Co-op",
+    "employer": "Portal Instruments",
+    "location": "Cambridge, MA, USA",
+    "startDate": "01/2017",
+    "endDate": "09/2017",
+    "time": "Full-Time (Co-op)",
+    "duties": [
+        "Designing, assembling custom packaging for deliverable Clinical Devices",
+        "Fabricating test fixture pieces and aids using lathes, drill presses, 3D printers, and laser cutters",
+        "Assisting in verification and validation testing of clinical devices per internal and FDA, ISO 13485-based standards"
+    ],
+    "skills": [
+        "SolidWorks",
+        "CNC machining",
+        "laser cutter",
+        "3D printer",
+        "JavaScript"
+    ]
+}

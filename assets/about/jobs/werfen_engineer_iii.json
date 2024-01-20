@@ -1,0 +1,23 @@
+{
+    "title": "Engineer III",
+    "employer": "Werfen",
+    "location": "Bedford, MA, USA",
+    "startDate": "04/2023",
+    "endDate": null,
+    "time": "Full-Time",
+    "duties": [
+        "Developing tools for data extraction and analysis using Python from database backups",
+        "Writing Java programs to compute nonlinear regressions for data",
+        "Maintaining AWS EC2 instance with GPUs for use in testing and generating ML model and machine visions scripts",
+        "Creating automated fixtures in LabView for manufacturing quality control testing, including motion control"
+    ],
+    "skills": [
+        "Python",
+        "automation",
+        "LabView",
+        "Java",
+        "SQL",
+        "machine learning",
+        "machine vision"
+    ]
+}

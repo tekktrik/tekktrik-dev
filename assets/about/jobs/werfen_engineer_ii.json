@@ -1,0 +1,22 @@
+{
+    "title": "Engineer II",
+    "employer": "Werfen",
+    "location": "Bedford, MA, USA",
+    "startDate": "10/2020",
+    "endDate": "04/2023",
+    "time": "Full-Time",
+    "duties": [
+        "Creating Python emulation library to interface with digital control board of blood gas analyzer over parallel port",
+        "Developing hardware, software, and processes for automated test fixture, including microfludics and temperature control fixtures",
+        "Building tool for annotating images for use in YOLO machine learning model training"
+    ],
+    "skills": [
+        "Python",
+        "Arduino/C++",
+        "automation",
+        "LabView",
+        "CAD design",
+        "machine learning",
+        "3D printing"
+    ]
+}
