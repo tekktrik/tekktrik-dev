@@ -32,6 +32,9 @@
                                 {% endfor %}
                             </ul>
                         </div>
+                        {% for skill in job.skills %}
+                        <span class="badge bg-primary my-2">{{ skill }}</span>
+                        {% endfor %}
                         {% if loop.index != jobs_list|length %}<hr/>{% endif %}
                         {% endfor %}
                     </div>
