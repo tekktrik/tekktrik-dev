@@ -44,4 +44,27 @@
             </div>
         {% endfor %}
     </div>
+
+    <hr/>
+
+    <h2>Education</h2>
+    <div class="container">
+        <div class="row m-2">
+            {% for education in educations %}
+            <div class="col-md-6">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ education.school }}</h4>
+                        <h5 class="card-subtitle">{{ education.degree }}</h5>
+                        <p class="card-text">{{ education.major }}
+                            {% if education.focus is not none %} - {{ education.focus }}{% endif %}</p>
+                        <p>GPA: {{ education.gpa }}</p>
+                        <p>{{ education.location }}</p>
+                    </div>
+                    <div class="card-footer">{{ education.startYear }} - {{ education.endYear }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

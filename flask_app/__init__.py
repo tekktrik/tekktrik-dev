@@ -114,4 +114,15 @@ def about() -> str:
     jobs.sort(key=sort_jobs_start_date, reverse=True)
     jobs_lists = consolidate_sorted_jobs(jobs)
     jobs_lists.sort(key=sort_grouped_jobs, reverse=True)
-    return render_template("about.html", jobs_lists=jobs_lists)
+
+    education_paths = pathlib.Path("assets/about/education")
+    educations = []
+    for education_path in education_paths.glob("*.json"):
+        with open(education_path, mode="r", encoding="utf-8") as edufile:
+            edu_obj = json.load(edufile)
+            if edu_obj["endYear"] is None:
+                edu_obj["endYear"] = "current"
+            educations.append(edu_obj)
+    educations.sort(key=lambda x: x["startYear"], reverse=True)
+
+    return render_template("about.html", jobs_lists=jobs_lists, educations=educations)
