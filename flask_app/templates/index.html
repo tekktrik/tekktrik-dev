@@ -5,19 +5,20 @@
 
 {% extends "layout/_layout.html" %}
 
+{% block head %}<link rel="stylesheet" href="/static/css/animations.css">{% endblock %}
+
 {% block title %}Tekktrik Development{% endblock %}
 
 {% block content %}
 <div class="m-2 text-center">
-    <h1 class="display-3">Hello, world!</h1>
-    <div class="col-md-6 mx-auto">
+    <h1 class="display-3 fade-fly-in" style="--delay: 2s">Hello, world!</h1>
+    <div class="col-md-6 mx-auto fade-fly-in" style="--delay: 3s">
         <p class="lead">
             I'm Alec Delaney! (@tekktrik)
         </p>
     </div>
-    <div>
-        <img src="static/img/ragnar_hero.jpg" class="img-fluid profile-image" />
+    <div class="fade-in" style="--duration: 2s">
+        <img src="static/img/ragnar_hero.jpg" class="img-fluid profile-image landing-prof-img" style="--delay: 4s" />
     </div>
-    <h5 class="h4"><a href="/about">More about me...</a></h5>
 </div>
 {% endblock %}
