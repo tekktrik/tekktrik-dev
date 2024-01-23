@@ -12,6 +12,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="/static/css/badges.css">
+<link rel="stylesheet" href="/static/css/animations.css">
 {% endblock %}
 
 {% block title %}Recent Activity{% endblock %}
@@ -25,7 +26,7 @@
         <div class="row m-2">
         {% endif %}
             <div class="col-md-6">
-                <div class="card">
+                <div class="card recent-load-in" style="--delay: {{ loop.index0 * 0.2 }}s">
                     <a href="{{ repo.url }}"><img src="{{ repo.openGraphImageUrl }}" class="card-img-top"/></a>
                     <div class="card-body">
                         {% if repo.languages.nodes|length == 0 %}

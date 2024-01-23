@@ -5,66 +5,72 @@
 
 {% extends "layout/_layout.html" %}
 
+{% block head %}<link rel="stylesheet" href="/static/css/animations.css">{% endblock %}
+
 {% block title %}About Me{% endblock %}
 
 {% block content %}
-    <h2>Professional Experience</h2>
-    <div class="accordion" id="jobAccordion">
-        {% for jobs_list in jobs_lists %}
-            {% set employer = jobs_list[0].employer %}
-            <div class="accordion-item">
-                <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ loop.index }}">
-                        <strong>{{ employer }}</strong>:
-                        ({{ jobs_list[-1].startDate }} - {{ jobs_list[0].endDate }})
-                    </button>
-                </h3>
-                <div class="accordion-collapse collapse" id="job{{ loop.index }}" data-bs-parent="#jobAccordion">
-                    <div class="accordion-body">
-                        {% for job in jobs_list %}
-                        <div>
-                            <h4>{{ job.title }}</h4>
-                            <h6>{{ job.startDate }} - {{ job.endDate }}</h6>
-                            <p>[<i>{{ job.time }}</i>]</p>
-                            <ul class="list-group">
-                                {% for duty in job.duties %}
-                                <li class="list-group-item">
-                                    {{ duty }}
-                                </li>
-                                {% endfor %}
-                            </ul>
+    <div class="about-fade-fly-in" style="--delay: 0s">
+        <h2>Professional Experience</h2>
+        <div class="accordion" id="jobAccordion">
+            {% for jobs_list in jobs_lists %}
+                {% set employer = jobs_list[0].employer %}
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ loop.index }}">
+                            <strong>{{ employer }}</strong>:
+                            ({{ jobs_list[-1].startDate }} - {{ jobs_list[0].endDate }})
+                        </button>
+                    </h3>
+                    <div class="accordion-collapse collapse" id="job{{ loop.index }}" data-bs-parent="#jobAccordion">
+                        <div class="accordion-body">
+                            {% for job in jobs_list %}
+                            <div>
+                                <h4>{{ job.title }}</h4>
+                                <h6>{{ job.startDate }} - {{ job.endDate }}</h6>
+                                <p>[<i>{{ job.time }}</i>]</p>
+                                <ul class="list-group">
+                                    {% for duty in job.duties %}
+                                    <li class="list-group-item">
+                                        {{ duty }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% for skill in job.skills %}
+                            <span class="badge bg-primary my-2">{{ skill }}</span>
+                            {% endfor %}
+                            {% if loop.index != jobs_list|length %}<hr/>{% endif %}
+                            {% endfor %}
                         </div>
-                        {% for skill in job.skills %}
-                        <span class="badge bg-primary my-2">{{ skill }}</span>
-                        {% endfor %}
-                        {% if loop.index != jobs_list|length %}<hr/>{% endif %}
-                        {% endfor %}
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 
     <hr/>
 
-    <h2>Education</h2>
-    <div class="container">
-        <div class="row m-2">
-            {% for education in educations %}
-            <div class="col-md-6">
-                <div class="card mb-2">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ education.school }}</h4>
-                        <h5 class="card-subtitle">{{ education.degree }}</h5>
-                        <p class="card-text">{{ education.major }}
-                            {% if education.focus is not none %} - {{ education.focus }}{% endif %}</p>
-                        <p>GPA: {{ education.gpa }}</p>
-                        <p>{{ education.location }}</p>
+    <div class="container about-fade-fly-in" style="--delay: 1s">
+        <h2>Education</h2>
+        <div class="container">
+            <div class="row m-2">
+                {% for education in educations %}
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ education.school }}</h4>
+                            <h5 class="card-subtitle">{{ education.degree }}</h5>
+                            <p class="card-text">{{ education.major }}
+                                {% if education.focus is not none %} - {{ education.focus }}{% endif %}</p>
+                            <p>GPA: {{ education.gpa }}</p>
+                            <p>{{ education.location }}</p>
+                        </div>
+                        <div class="card-footer">{{ education.startYear }} - {{ education.endYear }}</div>
                     </div>
-                    <div class="card-footer">{{ education.startYear }} - {{ education.endYear }}</div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 {% endblock %}

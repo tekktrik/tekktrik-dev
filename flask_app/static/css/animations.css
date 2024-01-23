@@ -1,0 +1,48 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Alec Delaney
+ * SPDX-License-Identifier: MIT
+ */
+
+@keyframes InitClear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100;
+    }
+}
+
+@keyframes FadeFlyIn {
+    0% {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 100;
+    }
+}
+
+.about-fade-fly-in {
+    animation:
+        var(--duration, 0.5s) ease-out calc(var(--delay, 0s)) 1 FadeFlyIn,
+        var(--delay, 0s) step-end 0s 1 InitClear;
+}
+
+@keyframes RecentLoadIn {
+    0% {
+        transform: rotate(-15deg) scale(0.5);
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.recent-load-in {
+    animation:
+        var(--duration, 0.5s) ease-out calc(var(--delay, 0s)) 1 RecentLoadIn,
+        var(--delay, 0s) step-end 0s 1 InitClear;
+}
