@@ -27,8 +27,8 @@
 
 .about-fade-fly-in {
     animation:
-        var(--duration, 0.5s) ease-out calc(var(--delay, 0s)) 1 FadeFlyIn,
-        var(--delay, 0s) step-end 0s 1 InitClear;
+        InitClear var(--delay, 0s) step-end 0s 1,
+        FadeFlyIn var(--duration, 0.5s) ease-out calc(var(--delay, 0s)) 1;
 }
 
 @keyframes RecentLoadIn {
@@ -43,6 +43,7 @@
 
 .recent-load-in {
     animation:
-        var(--duration, 0.5s) ease-out calc(var(--delay, 0s)) 1 RecentLoadIn,
-        var(--delay, 0s) step-end 0s 1 InitClear;
+        InitClear var(--delay, 0s) step-end 0s 1,
+        RecentLoadIn var(--duration, 0.5s) ease-out calc(var(--delay, 0s));
 }
+
