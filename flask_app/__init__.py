@@ -84,7 +84,9 @@ def project_menorah_settings() -> str:
 @app.route("/recent", methods=["GET"])
 def recent() -> str:
     """Route for recent GitHub activity"""
-    contributions, repos = get_repo_info(config["GH_TOKEN"])
+    with open("assets/contrib/recent.json", encoding="utf-8") as respfile:
+        contents = json.load(respfile)
+    contributions, repos = contents["contributionsCollection"], contents["repositories"]
     end_datetime = dateutil.parser.parse(contributions["endedAt"])
     start_datetime = dateutil.parser.parse(contributions["startedAt"])
     diff_datetime: datetime.timedelta = end_datetime - start_datetime
