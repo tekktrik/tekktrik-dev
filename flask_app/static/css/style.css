@@ -20,6 +20,10 @@ body > .container {
     padding: 100px 0;
 }
 
+.layout-navbar {
+    background-color: #000000;
+}
+
 .navbar-brand {
     margin-left: 10px;
     margin-right: 5px;

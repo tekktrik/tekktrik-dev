@@ -9,3 +9,7 @@ __pycache__
 venv
 .venv
 .env
+
+# Project specific files
+flask_app/static/img/gh_cards/*.png
+assets/contrib/recent.json
