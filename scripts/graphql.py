@@ -5,6 +5,7 @@
 
 import json
 import pathlib
+import sys
 
 import requests
 
@@ -26,8 +27,9 @@ resp = requests.post(
 )
 
 json_resp = json.loads(resp.content)["data"]["user"]
-resp_dir = pathlib.Path("assets/contrib/")
-card_dir = pathlib.Path("flask_app/static/img/gh_cards/")
+base_dir = pathlib.Path(sys.argv[1])
+resp_dir = base_dir / "assets/contrib/"
+card_dir = base_dir / "flask_app/static/img/gh_cards/"
 resp_dir.mkdir(exist_ok=True)
 card_dir.mkdir(exist_ok=True)
 
