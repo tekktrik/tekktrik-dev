@@ -35,12 +35,7 @@ jobs:
           deactivate
 
           # Update image cache instruction
-          rm -rf .cron
-          python3 -m venv .cron
-          source .cron/bin/activate
-          pip install --force-reinstall -r scripts/requirements.txt
           sh scripts/schedule_cache.sh
-          deactivate
 
           # Reload supervisor
           supervisorctl restart flask_app
