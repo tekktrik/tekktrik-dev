@@ -14,7 +14,7 @@ URL = "https://api.github.com/graphql"
 with open("/etc/config.json", encoding="utf-8") as jsonfile:
     config = json.load(jsonfile)
 
-with open("assets/graphql_query.txt", mode="r", encoding="utf-8") as queryfile:
+with open("assets/graphql_query.txt", encoding="utf-8") as queryfile:
     query_param = {"query": queryfile.read()}
 
 resp = requests.post(
@@ -40,7 +40,8 @@ with open(str(resp_dir / "recent.json"), mode="w", encoding="utf-8") as contribf
 for index, node in enumerate(json_resp["repositories"]["nodes"]):
     for _ in range(5):
         img_resp = requests.get(node["openGraphImageUrl"], timeout=5)
-        if img_resp.status_code == 200:
+        status_okay = 200
+        if img_resp.status_code == status_okay:
             with open(str(card_dir / f"card{index}.png"), mode="wb") as imgfile:
                 for data_chunk in img_resp:
                     imgfile.write(data_chunk)

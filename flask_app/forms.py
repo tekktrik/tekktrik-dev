@@ -1,8 +1,7 @@
 # SPDX-FileCopyrightText: 2023 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-"""
-WTForms used in the Flask application
+"""WTForms used in the Flask application.
 
 Author: Alec Delaney
 """
@@ -13,7 +12,7 @@ from wtforms.validators import DataRequired
 
 
 class MenorahSetupForm(FlaskForm):
-    """Form for menorah information"""
+    """Form for menorah information."""
 
     zipcode = StringField("Zip Code", validators=[DataRequired()])
     submit = SubmitField("Generate file...")

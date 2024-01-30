@@ -1,8 +1,7 @@
 # SPDX-FileCopyrightText: 2023 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-"""
-Helper functions used by the Flask application
+"""Helper functions used by the Flask application.
 
 Author: Alec Delaney
 """
@@ -16,7 +15,7 @@ import requests
 
 
 class JobDict(TypedDict):
-    """TypedDict representing job JSON file contents"""
+    """TypedDict representing job JSON file contents."""
 
     title: str
     employer: str
@@ -29,15 +28,15 @@ class JobDict(TypedDict):
 
 
 def generate_settings_json(zipcode: str) -> str:
-    """Generate a settings file for the CircuiyPythonukiah"""
+    """Generate a settings file for the CircuiyPythonukiah."""
     return json.dumps({"zipcode": zipcode})
 
 
 def get_repo_info(token: str) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Get repository info from the GraphQL query"""
+    """Get repository info from the GraphQL query."""
     url = "https://api.github.com/graphql"
 
-    with open("assets/graphql_query.txt", mode="r", encoding="utf-8") as queryfile:
+    with open("assets/graphql_query.txt", encoding="utf-8") as queryfile:
         query_param = {"query": queryfile.read()}
 
     resp = requests.post(
@@ -55,13 +54,13 @@ def get_repo_info(token: str) -> tuple[dict[str, Any], dict[str, Any]]:
 
 
 def sort_jobs_start_date(job: JobDict) -> int:
-    """Sort the jobs by start date"""
+    """Sort the jobs by start date."""
     month_str, year_str = job["startDate"].split("/")
     return int(year_str) * 100 + int(month_str)
 
 
 def consolidate_sorted_jobs(jobs: list[JobDict]) -> list[list[JobDict]]:
-    """Consolidate jobs in instances like promotions"""
+    """Consolidate jobs in instances like promotions."""
     grouped_jobs_dict: dict[str, list[JobDict]] = {}
     grouped_jobs_list: list[list[JobDict]] = []
 
@@ -85,7 +84,8 @@ def consolidate_sorted_jobs(jobs: list[JobDict]) -> list[list[JobDict]]:
 
         # If job was not just newly added and gap is no more than 31 days apart
         # then add to existing list
-        if not newly_added and (start_role - end_role).days <= 31:
+        duration_days = 31
+        if not newly_added and (start_role - end_role).days <= duration_days:
             grouped_jobs_dict[employer].append(job)
 
         elif not newly_added:
@@ -99,5 +99,5 @@ def consolidate_sorted_jobs(jobs: list[JobDict]) -> list[list[JobDict]]:
 
 
 def sort_grouped_jobs(jobs_list: list[JobDict]) -> int:
-    """Sort the grouped lists of jobs"""
+    """Sort the grouped lists of jobs."""
     return sort_jobs_start_date(jobs_list[0])
