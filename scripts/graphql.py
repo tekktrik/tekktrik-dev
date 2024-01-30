@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Alec Delaney
+# SPDX-FileCopyrightText: 2024 Alec Delaney
 # SPDX-License-Identifier: MIT
 
 """Download the images from the GraphQL query to the static folder."""

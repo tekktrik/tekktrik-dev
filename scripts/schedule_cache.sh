@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-FileCopyrightText: 2023 Alec Delaney
+# SPDX-FileCopyrightText: 2024 Alec Delaney
 # SPDX-License-Identifier: MIT
 
 REPOPATH=$(realpath .)
