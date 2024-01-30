@@ -11,10 +11,17 @@ import requests
 
 URL = "https://api.github.com/graphql"
 
+base_dir = pathlib.Path(sys.argv[1])
+
+resp_dir = base_dir / "assets/contrib/"
+card_dir = base_dir / "flask_app/static/img/gh_cards/"
+resp_dir.mkdir(exist_ok=True)
+card_dir.mkdir(exist_ok=True)
+
 with open("/etc/config.json", encoding="utf-8") as jsonfile:
     config = json.load(jsonfile)
 
-with open("assets/graphql_query.txt", encoding="utf-8") as queryfile:
+with open(base_dir / "assets/graphql_query.txt", encoding="utf-8") as queryfile:
     query_param = {"query": queryfile.read()}
 
 resp = requests.post(
@@ -27,13 +34,8 @@ resp = requests.post(
 )
 
 json_resp = json.loads(resp.content)["data"]["user"]
-base_dir = pathlib.Path(sys.argv[1])
-resp_dir = base_dir / "assets/contrib/"
-card_dir = base_dir / "flask_app/static/img/gh_cards/"
-resp_dir.mkdir(exist_ok=True)
-card_dir.mkdir(exist_ok=True)
 
-with open(str(resp_dir / "recent.json"), mode="w", encoding="utf-8") as contribfile:
+with open(resp_dir / "recent.json", mode="w", encoding="utf-8") as contribfile:
     json.dump(json_resp, contribfile)
 
 
