@@ -23,7 +23,7 @@ old_resp_file = resp_dir / ("recent_" + last_datetime_str + ".json")
 parent_card_dir = base_dir / "flask_app/static/img/gh_cards/"
 old_card_dir = parent_card_dir / last_datetime_str
 
+old_resp_file.unlink(missing_ok=True)
 for card in old_card_dir.glob("*"):
     card.unlink(missing_ok=True)
-old_card_dir.unlink(missing_ok=True)
-old_resp_file.unlink(missing_ok=True)
+old_card_dir.rmdir()
