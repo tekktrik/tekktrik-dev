@@ -5,4 +5,4 @@
 REPOPATH=$(realpath .)
 SCRIPTPATH="$REPOPATH/scripts/graphql.py"
 
-python "$SCRIPTPATH" "$REPOPATH"
+/usr/bin/python3.12 "$SCRIPTPATH" "$REPOPATH"
