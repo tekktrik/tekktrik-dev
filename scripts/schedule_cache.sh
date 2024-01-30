@@ -4,7 +4,7 @@
 
 REPOPATH=$(realpath .)
 SCRIPTPATH="$REPOPATH/scripts/graphql.py"
-COMMAND="50 23 * * * python $SCRIPTPATH $REPOPATH"
+COMMAND="55 23 * * * python $SCRIPTPATH $REPOPATH"
 JOBNAME=$(echo "$REPOPATH" | xargs basename)
 
 cronberry enter "Cache cards for $JOBNAME" "$COMMAND" --overwrite
