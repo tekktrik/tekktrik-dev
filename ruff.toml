@@ -1,0 +1,2 @@
+select = ["D", "PL", "UP", "I"]
+ignore = ["D213", "D203"]
