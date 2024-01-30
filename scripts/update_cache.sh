@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 REPOPATH=$(realpath .)
+PATH="$REPOPATH/.venv/bin:$PATH"
 SCRIPTPATH="$REPOPATH/scripts/graphql.py"
 
-/usr/bin/python3.12 "$SCRIPTPATH" "$REPOPATH"
+python "$SCRIPTPATH" "$REPOPATH"

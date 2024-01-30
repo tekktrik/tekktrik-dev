@@ -83,14 +83,18 @@ def project_menorah_settings() -> str:
 @app.route("/recent", methods=["GET"])
 def recent() -> str:
     """Route for recent GitHub activity."""
-    with open("assets/contrib/recent.json", encoding="utf-8") as respfile:
+    datetime_fmt = "%Y%m%d%H"
+    current_datetime = datetime.datetime.now(dateutil.tz.gettz())
+    current_datetime_str = current_datetime.strftime(datetime_fmt)
+    with open(
+        f"assets/contrib/recent_{current_datetime_str}.json", encoding="utf-8"
+    ) as respfile:
         contents = json.load(respfile)
     contributions, repos = contents["contributionsCollection"], contents["repositories"]
     end_datetime = dateutil.parser.parse(contributions["endedAt"])
     start_datetime = dateutil.parser.parse(contributions["startedAt"])
     diff_datetime: datetime.timedelta = end_datetime - start_datetime
     oldest_push = dateutil.parser.parse(repos["nodes"][-1]["pushedAt"])
-    current_datetime = datetime.datetime.now(dateutil.tz.UTC)
     diff_oldest = current_datetime - oldest_push
     return render_template(
         "recent.html",
@@ -98,6 +102,7 @@ def recent() -> str:
         num_contributions=contributions["contributionCalendar"]["totalContributions"],
         duration_days=diff_datetime.days,
         diff_oldest=math.ceil(diff_oldest.days / 365),
+        current_datetime=current_datetime_str,
     )
 
 
