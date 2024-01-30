@@ -41,4 +41,4 @@ jobs:
           sh scripts/schedule_cache.sh
 
           # Reload supervisor
-          supervisorctl start test_flask_app
+          supervisorctl restart test_flask_app

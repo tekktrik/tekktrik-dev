@@ -78,7 +78,7 @@ def consolidate_sorted_jobs(jobs: list[JobDict]) -> list[list[JobDict]]:
             grouped_jobs_dict[employer][-1]["startDate"], "%m/%Y"
         )
         if job["endDate"] == "current":
-            end_role = datetime.datetime.now(dateutil.tz.UTC)
+            end_role = datetime.datetime.now(dateutil.tz.gettz())
         else:
             end_role = datetime.datetime.strptime(job["endDate"], "%m/%Y")
 
