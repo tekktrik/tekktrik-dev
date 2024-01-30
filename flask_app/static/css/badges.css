@@ -41,6 +41,10 @@
     background-color: tan;
 }
 
+.badge-makefile {
+    background-color: rgb(66, 120, 25);
+}
+
 .badge-other-language {
     background-color: grey;
 }
