@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: 2024 Alec Delaney
+# SPDX-License-Identifier: MIT
+
+select = ["D", "PL", "UP", "I"]
+ignore = ["D213", "D203"]

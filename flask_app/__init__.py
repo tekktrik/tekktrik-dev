@@ -1,8 +1,7 @@
 # SPDX-FileCopyrightText: 2023 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-"""
-Main entry point for the flask application
+"""Main entry point for the flask application.
 
 Author: Alec Delaney
 """
@@ -51,24 +50,24 @@ limiter = Limiter(
 
 @app.route("/")
 def index() -> str:
-    """Route for index (landing page)"""
+    """Route for index (landing page)."""
     return render_template("index.html")
 
 
 @app.route("/set-menorah")
 def menorah_settings() -> Response:
-    """Route for shortcut to menorah settings page"""
+    """Route for shortcut to menorah settings page."""
     return redirect("/projects/menorah/settings")
 
 
 @app.route("/projects/menorah/settings", methods=["GET", "POST"])
 @limiter.limit("10/second", key_func=lambda: "menorah-settings")
 def project_menorah_settings() -> str:
-    """Route for creating menorah settings file"""
+    """Route for creating menorah settings file."""
     input_form = MenorahSetupForm()
     if input_form.validate_on_submit():
         zipcode = input_form.data["zipcode"]
-        with open("assets/settings.json", mode="r", encoding="utf-8") as template_file:
+        with open("assets/settings.json", encoding="utf-8") as template_file:
             template_text = template_file.read()
         template = jinja2.Template(template_text)
         rendered_temp = template.render(zipcode=zipcode)
@@ -83,7 +82,7 @@ def project_menorah_settings() -> str:
 
 @app.route("/recent", methods=["GET"])
 def recent() -> str:
-    """Route for recent GitHub activity"""
+    """Route for recent GitHub activity."""
     with open("assets/contrib/recent.json", encoding="utf-8") as respfile:
         contents = json.load(respfile)
     contributions, repos = contents["contributionsCollection"], contents["repositories"]
@@ -104,11 +103,11 @@ def recent() -> str:
 
 @app.route("/about", methods=["GET"])
 def about() -> str:
-    """Route for about me page"""
+    """Route for about me page."""
     jobs_path = pathlib.Path("assets/about/jobs")
     jobs = []
     for job_path in jobs_path.glob("*.json"):
-        with open(job_path, mode="r", encoding="utf-8") as jobfile:
+        with open(job_path, encoding="utf-8") as jobfile:
             job_obj = json.load(jobfile)
             if job_obj["endDate"] is None:
                 job_obj["endDate"] = "current"
@@ -120,7 +119,7 @@ def about() -> str:
     education_paths = pathlib.Path("assets/about/education")
     educations = []
     for education_path in education_paths.glob("*.json"):
-        with open(education_path, mode="r", encoding="utf-8") as edufile:
+        with open(education_path, encoding="utf-8") as edufile:
             edu_obj = json.load(edufile)
             if edu_obj["endYear"] is None:
                 edu_obj["endYear"] = "current"
