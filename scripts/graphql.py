@@ -15,7 +15,6 @@ URL = "https://api.github.com/graphql"
 DATETIME_FMT = "%Y%m%d%H"
 
 current_datetime = datetime.datetime.now(dateutil.tz.gettz())
-current_datetime_str = current_datetime.strftime(DATETIME_FMT)
 
 next_datetime = current_datetime + datetime.timedelta(minutes=10)
 next_datetime_str = next_datetime.strftime(DATETIME_FMT)
@@ -47,7 +46,9 @@ resp = requests.post(
 
 json_resp = json.loads(resp.content)["data"]["user"]
 
-with open(resp_dir / "recent.json", mode="w", encoding="utf-8") as contribfile:
+with open(
+    resp_dir / f"recent_{next_datetime_str}.json", mode="w", encoding="utf-8"
+) as contribfile:
     json.dump(json_resp, contribfile)
 
 

@@ -12,7 +12,6 @@ import dateutil.tz
 DATETIME_FMT = "%Y%m%d%H"
 
 current_datetime = datetime.datetime.now(dateutil.tz.gettz())
-current_datetime_str = current_datetime.strftime(DATETIME_FMT)
 
 last_datetime = current_datetime - datetime.timedelta(minutes=10)
 last_datetime_str = last_datetime.strftime(DATETIME_FMT)
