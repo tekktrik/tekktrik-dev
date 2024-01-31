@@ -36,6 +36,18 @@
         InitClear calc(var(--duration, 1s) + var(--delay, 0s)) ease-out var(--delay, 0s) 1;
 }
 
+@keyframes Reveal {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        height: auto;
+        opacity: 1;
+    }
+}
+
 @keyframes RecentLoadIn {
     0% {
         transform: rotate(-15deg) scale(0.5);
@@ -48,9 +60,10 @@
 
 .recent-load-in {
     animation:
-        InitClear var(--delay, 0s) step-end 0s 1,
-        RecentLoadIn var(--duration, 0.5s) ease-out calc(var(--delay, 0s));
-}
+        InitClear var(--delay, 0s) step-end 0s,
+        RecentLoadIn var(--duration, 0.5s) ease-out calc(var(--delay, 0s)),
+        Reveal var(--delay, 0s) step-end 0s forwards;
+    }
 
 @keyframes LandingImageGlow {
     0% {
