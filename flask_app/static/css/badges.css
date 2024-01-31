@@ -12,7 +12,7 @@
 }
 
 .badge-html {
-    background-color: rgb(219, 73, 37);
+    background-color: rgb(206, 68, 34);
 }
 
 .badge-css {
@@ -46,5 +46,5 @@
 }
 
 .badge-other-language {
-    background-color: grey;
+    background-color: rgb(73, 73, 73);
 }
