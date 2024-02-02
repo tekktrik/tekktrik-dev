@@ -12,5 +12,5 @@ venv
 .cron
 
 # Project specific files
-flask_app/static/img/gh_cards/*.png
-assets/contrib/recent.json
+flask_app/static/img/gh_cards/**/*.png
+assets/contrib/recent_*.json
