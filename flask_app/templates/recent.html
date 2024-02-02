@@ -22,7 +22,7 @@
 <p class="text-center">Here are some repositories I've contributed to within the last {{ diff_oldest }} years:</p>
 <div class="container">
     {% for repo in repos %}
-        {% if loop.index % 2 == 1 %}
+        {% if loop.index0 % 2 == 0 %}
         <div class="row m-2">
         {% endif %}
             <div class="col-md-6">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-        {% if loop.index % 2 == 0 %}
+        {% if loop.index0 % 2 == 1 or loop.index1 == repos|length %}
         </div>
         {% endif %}
     {% endfor %}
