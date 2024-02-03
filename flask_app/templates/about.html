@@ -11,6 +11,35 @@
 
 {% block content %}
     <div class="fade-fly-in" style="--delay: 0s">
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-6 col-xl-4 mb-3 mb-lg-0">
+                <img class="img-fluid profile-image" src="static/img/tekkno_wings.jpg" alt="Image of myself (Alec) with light-up wings behind me">
+            </div>
+            <div class="col-lg-6 col-xl-8 align-items-center">
+                <h2>About Me:</h2>
+                <p class="lead">
+                    I'm an hardware engineer and software developer from the Boston area.
+                    I love creating free and open source projects that others can use.
+                    I also love playing Dungeons and Dragons, making cocktails, running,
+                    and cycling.If you're hoping to make or collaborate on anything
+                    relating to...
+                </p>
+                <ul>
+                    <li class="lead">Robotics</li>
+                    <li class="lead">Automation</li>
+                    <li class="lead">Software Engineering</li>
+                    <li class="lead">CircuitPython</li>
+                    <li class="lead">Microcontrollers</li>
+                    <li class="lead">DevOps</li>
+                    <li class="lead">Open Source Hardware/Software</li>
+                </ul>
+                <p class="lead"> ...then let me know!  I'd love to talk about it!</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+
+    <div class="fade-fly-in" style="--delay: 1s">
         <h2>Professional Experience</h2>
         <div class="accordion" id="jobAccordion">
             {% for jobs_list in jobs_lists %}
@@ -50,7 +79,7 @@
         <hr/>
     </div>
 
-    <div class="fade-fly-in" style="--delay: 1s">
+    <div class="fade-fly-in" style="--delay: 2s">
         <h2>Education</h2>
         <div class="container">
             <div class="row m-2">
