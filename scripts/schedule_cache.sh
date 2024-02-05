@@ -4,15 +4,15 @@
 
 REPOPATH=$(realpath .)
 
-PYTHONBIN="$REPOPATH/.venv/bin/python"
+PYBINPATH="$REPOPATH/.venv/bin"
 
 UPDATESCRIPTPATH="$REPOPATH/scripts/graphql.py"
-UPDATECOMMAND="55 * * * * $PYTHONBIN $UPDATESCRIPTPATH $REPOPATH"
+UPDATECOMMAND="55 * * * * python $UPDATESCRIPTPATH $REPOPATH"
 UPDATEJOBNAME=$(echo "$REPOPATH" | xargs basename)
 
 DELETESCRIPTPATH="$REPOPATH/scripts/post_graphql.py"
-DELETECOMMAND="5 * * * * $PYTHONBIN $DELETESCRIPTPATH $REPOPATH"
+DELETECOMMAND="5 * * * * python $DELETESCRIPTPATH $REPOPATH"
 DELETEJOBNAME=$(echo "$REPOPATH" | xargs basename)
 
-cronberry enter "Cache new cards for $UPDATEJOBNAME" "$UPDATECOMMAND" --overwrite
-cronberry enter "Delete old cards for $DELETEJOBNAME" "$DELETECOMMAND" --overwrite
+cronberry enter "Cache new cards for $UPDATEJOBNAME" "$UPDATECOMMAND" --path "$PYBINPATH" --overwrite
+cronberry enter "Delete old cards for $DELETEJOBNAME" "$DELETECOMMAND" --path "$PYBINPATH" --overwrite

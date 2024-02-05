@@ -1,4 +1,4 @@
 # SPDX-FileCopyrightText: 2024 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-cronberry~=2.1  # This is installed via pipx
+cronberry~=3.1  # This is installed via pipx
