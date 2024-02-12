@@ -7,6 +7,7 @@ import datetime
 import json
 import pathlib
 import sys
+import time
 
 import dateutil.tz
 import requests
@@ -60,3 +61,5 @@ for index, node in enumerate(json_resp["repositories"]["nodes"]):
             with open(str(new_card_dir / f"card{index}.png"), mode="wb") as imgfile:
                 for data_chunk in img_resp:
                     imgfile.write(data_chunk)
+        else:
+            time.sleep(2)
