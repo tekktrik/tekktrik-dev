@@ -34,6 +34,9 @@ jobs:
           pip install -r requirements.txt
           deactivate
 
+          # Print version of cronberry being used
+          cronberry --version
+
           # Update image cache instruction
           sh scripts/schedule_cache.sh
 
