@@ -17,7 +17,12 @@ DATETIME_FMT = "%Y%m%d%H"
 
 current_datetime = datetime.datetime.now(dateutil.tz.gettz())
 
-next_datetime = current_datetime + datetime.timedelta(minutes=10)
+if "--now" in sys.argv:
+    delay = 0
+else:
+    delay = 10
+
+next_datetime = current_datetime + datetime.timedelta(minutes=delay)
 next_datetime_str = next_datetime.strftime(DATETIME_FMT)
 
 base_dir = pathlib.Path(sys.argv[1])
