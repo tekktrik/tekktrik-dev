@@ -53,13 +53,19 @@ with open(
     json.dump(json_resp, contribfile)
 
 
+len_nodes = len(json_resp["repositories"]["nodes"])
 for index, node in enumerate(json_resp["repositories"]["nodes"]):
-    for _ in range(5):
-        img_resp = requests.get(node["openGraphImageUrl"], timeout=5)
-        status_okay = 200
-        if img_resp.status_code == status_okay:
-            with open(str(new_card_dir / f"card{index}.png"), mode="wb") as imgfile:
-                for data_chunk in img_resp:
-                    imgfile.write(data_chunk)
-        else:
-            time.sleep(2)
+    for _ in range(3):
+        try:
+            img_resp = requests.get(node["openGraphImageUrl"], timeout=10)
+            status_okay = 200
+            if img_resp.status_code == status_okay:
+                with open(str(new_card_dir / f"card{index}.png"), mode="wb") as imgfile:
+                    for data_chunk in img_resp:
+                        imgfile.write(data_chunk)
+                break
+        except (TimeoutError, requests.exceptions.ReadTimeout):
+            pass  # Try again
+        finally:
+            if index != len_nodes - 1:
+                time.sleep(1)
