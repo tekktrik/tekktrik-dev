@@ -38,6 +38,7 @@ jobs:
           deactivate
 
           # Print version of cronberry being used
+          PATH="/home/$(whoami)/.local/bin:$PATH"
           cronberry --version
 
           # Update image cache instruction
