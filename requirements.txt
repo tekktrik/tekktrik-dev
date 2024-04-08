@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-bootstrap-flask~=2.3
+bootstrap-flask~=2.4
 flask~=3.0
 flask-limiter[redis]~=3.5
 flask-wtf~=1.2
