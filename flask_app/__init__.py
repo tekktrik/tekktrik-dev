@@ -146,6 +146,8 @@ def other(pagenum: str = "1") -> str:
             other_obj = json.load(otherfile)
             other_works.append(other_obj)
 
+    max_pages = len(other_works) // 5 + 1
+
     start_index = (pagenum - 1) * 5
     end_index = start_index + 5
 
@@ -155,5 +157,8 @@ def other(pagenum: str = "1") -> str:
     other_works.sort(key=lambda x: x["datetime"], reverse=True)
 
     return render_template(
-        "other.html", works=other_works[start_index:end_index], pagenum=pagenum
+        "other.html",
+        works=other_works[start_index:end_index],
+        pagenum=pagenum,
+        maxpages=max_pages,
     )
