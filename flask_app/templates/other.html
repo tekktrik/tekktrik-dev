@@ -17,6 +17,9 @@
                 <h5 class="card-title">{{ work.name }}</h5>
                 <p class="card-text">{{ work.description }}</p>
             </div>
+            <div class="card-body">
+                <p class="card-text">{{ work.datetime | timestamptodate }}</p>
+            </div>
         </div>
     </div>
 </div>
