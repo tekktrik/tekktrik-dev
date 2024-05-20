@@ -46,6 +46,13 @@ limiter = Limiter(
 )
 
 
+@app.template_filter("timestamptodate")
+def timestamptodate(timestamp: int):
+    """Jinja filter to convert a timestamp to a date."""
+    date = datetime.date.fromtimestamp(timestamp)
+    return date.strftime("%b %d %Y")
+
+
 @app.route("/")
 def index() -> str:
     """Route for index (landing page)."""
