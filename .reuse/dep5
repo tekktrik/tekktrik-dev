@@ -10,3 +10,7 @@ License: MIT
 Files: assets/about/education/*.json
 Copyright: 2024 Alec Delaney
 License: MIT
+
+Files: assets/other/*.json
+Copyright: 2024 Alec Delaney
+License: MIT

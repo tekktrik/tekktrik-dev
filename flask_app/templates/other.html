@@ -1,0 +1,51 @@
+<!--
+    SPDX-FileCopyrightText: 2024 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+{% set prevpage = pagenum - 1 %}
+{% set nextpage = pagenum + 1 %}
+
+{% macro generate_work_card(work) -%}
+<div class="row d-flex pb-4">
+    <div class="col-lg-6 mx-auto">
+        <div class="card border-white">
+            <a href="{{ work.url }}" aria-label="{{ work.aria_label }}">
+                <img src="{{ work.image }}" class="card-img-top" alt="{{ work.alt_text }}">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{ work.name }}</h5>
+                <p class="card-text">{{ work.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{%- endmacro %}
+
+{% extends "layout/_layout.html" %}
+
+{% block head %}<link rel="stylesheet" href="/static/css/animations.css">{% endblock %}
+
+{% block title %}Other Work{% endblock %}
+
+{% block content %}
+<p class="lead text-center">Check out some of my other contributions and work!</p>
+<div class="container align-items-center">
+    {% for work in works %}
+        {{ generate_work_card(work) }}
+    {% endfor %}
+</div>
+<nav aria-label="Navigation for other works">
+    <ul class="pagination justify-content-center">
+    {% if pagenum != 1%}
+        <li class="page-item"><a class="page-link" href="/other/{{ prevpage }}">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="/other/{{ prevpage }}">{{ prevpage }}</a></li>
+    {% endif %}
+        <li class="page-item"><a class="page-link" href="/other/{{ pagenum }}">{{ pagenum }}</a></li>
+    {% if pagenum < maxpages %}
+        <li class="page-item"><a class="page-link" href="/other/{{ nextpage }}">{{ nextpage }}</a></li>
+        <li class="page-item"><a class="page-link" href="/other/{{ nextpage }}">Next</a></li>
+    {% endif %}
+    </ul>
+</nav>
+{% endblock %}
