@@ -23,8 +23,6 @@ from flask_limiter.util import get_remote_address
 from flask_app.forms import MenorahSetupForm
 from flask_app.helpers import (
     consolidate_sorted_jobs,
-    generate_settings_json,
-    get_repo_info,
     sort_grouped_jobs,
     sort_jobs_start_date,
 )
@@ -132,3 +130,30 @@ def about() -> str:
     educations.sort(key=lambda x: x["startYear"], reverse=True)
 
     return render_template("about.html", jobs_lists=jobs_lists, educations=educations)
+
+
+@app.route("/other", methods=["GET"])
+@app.route("/other/<pagenum>", methods=["GET"])
+def other(pagenum: str = "1") -> str:
+    """Route for other work page."""
+    pagenum = int(pagenum)
+    if pagenum <= 0:
+        pagenum = 1
+    other_path = pathlib.Path("assets/other")
+    other_works = []
+    for other_filepath in other_path.glob("*.json"):
+        with open(other_filepath, encoding="utf-8") as otherfile:
+            other_obj = json.load(otherfile)
+            other_works.append(other_obj)
+
+    start_index = (pagenum - 1) * 5
+    end_index = start_index + 5
+
+    if start_index >= len(other_works):
+        return other(pagenum - 1)
+
+    other_works.sort(key=lambda x: x["datetime"], reverse=True)
+
+    return render_template(
+        "other.html", works=other_works[start_index:end_index], pagenum=pagenum
+    )
