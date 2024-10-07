@@ -1,4 +1,4 @@
 # SPDX-FileCopyrightText: 2023 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-pre-commit~=3.8
+pre-commit~=4.0
