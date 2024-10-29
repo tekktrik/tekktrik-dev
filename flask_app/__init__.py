@@ -143,9 +143,7 @@ def about() -> str:
 @app.route("/other/<pagenum>", methods=["GET"])
 def other(pagenum: str = "1") -> str:
     """Route for other work page."""
-    pagenum = int(pagenum)
-    if pagenum <= 0:
-        pagenum = 1
+    # Load the other activities files and initialize them in a list
     other_path = pathlib.Path("assets/other")
     other_works = []
     for other_filepath in other_path.glob("*.json"):
@@ -153,16 +151,27 @@ def other(pagenum: str = "1") -> str:
             other_obj = json.load(otherfile)
             other_works.append(other_obj)
 
-    max_pages = len(other_works) // 5 + 1
+    # Calculate the maximum number of pages that can be rendered
+    # (assuming groups of 5 activities per page), minimum of 1 page
+    max_pages = (len(other_works) + 4) // 5
+    max_pages = 1 if max_pages < 1 else max_pages
 
+    # Convert the request page number to an integer and redirect
+    # if it is outside the possible bounds of allowable pages
+    pagenum = int(pagenum)
+    if pagenum < 1:
+        return redirect(url_for("other", pagenum=1))
+    if pagenum > max_pages:
+        return redirect(url_for("other", pagenum=max_pages))
+
+    # Calculate the start and end indices for the current page number
     start_index = (pagenum - 1) * 5
     end_index = start_index + 5
 
-    if start_index >= len(other_works):
-        return other(pagenum - 1)
-
+    # Sort the list of activities base on the datetime key
     other_works.sort(key=lambda x: x["datetime"], reverse=True)
 
+    # Render the HTML template
     return render_template(
         "other.html",
         works=other_works[start_index:end_index],
