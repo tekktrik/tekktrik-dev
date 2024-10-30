@@ -2,6 +2,9 @@
 # SPDX-FileCopyrightText: 2024 Alec Delaney
 # SPDX-License-Identifier: MIT
 
+# Script for managing the cron job instructions for downloading
+# GitHub repository summary card images via cronberry
+
 REPOPATH=$(realpath .)
 
 PYBINPATH="$REPOPATH/.venv/bin"
