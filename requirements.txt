@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 bootstrap-flask~=2.4
-flask~=3.0
+flask~=3.1
 flask-limiter[redis]~=3.8
 flask-wtf~=1.2
 gunicorn[eventlet]~=23.0
