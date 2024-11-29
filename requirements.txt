@@ -3,7 +3,7 @@
 
 bootstrap-flask~=2.4
 flask~=3.1
-flask-limiter[redis]~=3.8
+flask-limiter[redis]~=3.9
 flask-wtf~=1.2
 gunicorn[eventlet]~=23.0
 python-dateutil~=2.9
