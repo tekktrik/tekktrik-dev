@@ -3,7 +3,7 @@
 
 repos:
   - repo: https://github.com/fsfe/reuse-tool
-    rev: v4.0.3
+    rev: v5.0.2
     hooks:
       - name: Run REUSE
         id: reuse
@@ -17,7 +17,7 @@ repos:
       - name: Trim trailing whitespace
         id: trailing-whitespace
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.7.1
+    rev: v0.9.1
     hooks:
       - id: ruff
         name: Lint via ruff
