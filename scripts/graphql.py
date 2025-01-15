@@ -63,7 +63,7 @@ resp = requests.post(
     URL,
     json=query_param,
     headers={
-        "Authorization": f'Bearer {config["GH_TOKEN"]}',
+        "Authorization": f"Bearer {config['GH_TOKEN']}",
     },
     timeout=5,
 )
