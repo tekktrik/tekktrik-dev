@@ -47,6 +47,7 @@
 
 .badge-rust {
     background-color: rgb(222, 165, 132);
+    color: black;
 }
 
 .badge-other-language {
