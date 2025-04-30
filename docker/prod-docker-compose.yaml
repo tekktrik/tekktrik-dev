@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2025 Alec Delaney
+# SPDX-License-Identifier: MIT
+
+services:
+  prod-app:
+    build:
+      context: ../
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - prod-contrib:/app/assets/contrib
+      - prod-gh_cards:/app/flask_app/static/img/gh_cards
+    depends_on:
+      - prod-cron
+  prod-cron:
+    build:
+      context: ../
+      dockerfile: docker/cron/Dockerfile
+      no_cache: true
+    volumes:
+      - prod-contrib:/cron/contrib
+      - prod-gh_cards:/cron/gh_cards
+
+volumes:
+  prod-contrib:
+  prod-gh_cards:

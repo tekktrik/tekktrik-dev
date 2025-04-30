@@ -5,17 +5,14 @@
 # Script for managing the cron job instructions for downloading
 # GitHub repository summary card images via cronberry
 
-REPOPATH=$(realpath .)
+SCRIPTSPATH="/cron"
+PYTHONBIN="/usr/local/bin/python"
 
-PYBINPATH="$REPOPATH/.venv/bin"
+UPDATESCRIPTPATH="$SCRIPTSPATH/scripts/graphql.py"
+UPDATECOMMAND="55 * * * * $PYTHONBIN $UPDATESCRIPTPATH $SCRIPTSPATH"
 
-UPDATESCRIPTPATH="$REPOPATH/scripts/graphql.py"
-UPDATECOMMAND="55 * * * * python $UPDATESCRIPTPATH $REPOPATH"
-UPDATEJOBNAME=$(echo "$REPOPATH" | xargs basename)
+DELETESCRIPTPATH="$SCRIPTSPATH/scripts/post_graphql.py"
+DELETECOMMAND="5 * * * * $PYTHONBIN $DELETESCRIPTPATH $SCRIPTSPATH"
 
-DELETESCRIPTPATH="$REPOPATH/scripts/post_graphql.py"
-DELETECOMMAND="5 * * * * python $DELETESCRIPTPATH $REPOPATH"
-DELETEJOBNAME=$(echo "$REPOPATH" | xargs basename)
-
-cronberry enter "Cache new cards for $UPDATEJOBNAME" "$UPDATECOMMAND" --path "$PYBINPATH" --overwrite
-cronberry enter "Delete old cards for $DELETEJOBNAME" "$DELETECOMMAND" --path "$PYBINPATH" --overwrite
+cronberry enter "Cache new cards" "$UPDATECOMMAND" --overwrite
+cronberry enter "Delete old cards" "$DELETECOMMAND" --overwrite

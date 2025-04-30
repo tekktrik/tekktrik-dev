@@ -1,0 +1,25 @@
+# SPDX-FileCopyrightText: 2025 Alec Delaney
+# SPDX-License-Identifier: MIT
+
+version = 1
+SPDX-PackageName = "Tekktrik-Dev"
+SPDX-PackageSupplier = "Alec Delaney <tekktrik@tekktrik.dev>"
+SPDX-PackageDownloadLocation = "https://github.com/tekktrik/tekktrik-dev"
+
+[[annotations]]
+path = "assets/app/about/jobs/**.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 Alec Delaney"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "assets/app/about/education/**.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 Alec Delaney"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "assets/app/other/**.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 Alec Delaney"
+SPDX-License-Identifier = "MIT"

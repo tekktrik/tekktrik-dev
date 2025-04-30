@@ -5,11 +5,13 @@
 
 import datetime
 import json
+import os
 import pathlib
 import sys
 import time
 
 import dateutil.tz
+import dotenv
 import requests
 
 # Store the GraphQL API URL and date format for files
@@ -36,23 +38,21 @@ next_datetime_str = next_datetime.strftime(DATETIME_FMT)
 base_dir = pathlib.Path(sys.argv[1])
 
 # Create the directory to store the responses
-resp_dir = base_dir / "assets/contrib/"
-resp_dir.mkdir(exist_ok=True)
+resp_dir = base_dir / "contrib/"
 
 # Store the name of the new JSON response file
 new_resp_file = resp_dir / f"recent_{next_datetime_str}.json"
 
 # Ensure the parent repository card image directory exists
-parent_card_dir = base_dir / "flask_app/static/img/gh_cards/"
+parent_card_dir = base_dir / "gh_cards/"
 parent_card_dir.mkdir(exist_ok=True)
 
 # Create a directory for the specific repository image cards for the given datetime
 new_card_dir = parent_card_dir / next_datetime_str
 new_card_dir.mkdir(exist_ok=True)
 
-# Read the configuration settings file
-with open("/etc/config.json", encoding="utf-8") as jsonfile:
-    config = json.load(jsonfile)
+# Load the environment file
+dotenv.load_dotenv("/cron/.env")
 
 # Get the GraphQL query from the text file
 with open(base_dir / "assets/graphql_query.txt", encoding="utf-8") as queryfile:
@@ -63,7 +63,7 @@ resp = requests.post(
     URL,
     json=query_param,
     headers={
-        "Authorization": f"Bearer {config['GH_TOKEN']}",
+        "Authorization": f"Bearer {os.getenv('GRAPHQL_TOKEN')}",
     },
     timeout=5,
 )
@@ -72,9 +72,7 @@ resp = requests.post(
 json_resp = json.loads(resp.content)["data"]["user"]
 
 # Store the subset of data in a JSON file for later use
-with open(
-    resp_dir / f"recent_{next_datetime_str}.json", mode="w", encoding="utf-8"
-) as contribfile:
+with open(new_resp_file, mode="w", encoding="utf-8") as contribfile:
     json.dump(json_resp, contribfile)
 
 # Iterate through the returned repository nodes
@@ -95,7 +93,7 @@ for index, node in enumerate(json_resp["repositories"]["nodes"]):
                 break
         # If a timeout occurs, attempt the request again
         except (TimeoutError, requests.exceptions.ReadTimeout):
-            pass  # Try again
+            pass
         # Add mandatory execution delay to prevent constant timeouts and rate limiting
         finally:
             if index != len_nodes - 1:

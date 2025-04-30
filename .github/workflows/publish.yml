@@ -27,19 +27,11 @@ jobs:
           git config pull.rebase true
           git pull --rebase -ff
 
-          # Update the environment
-          rm -rf .venv
-          python3 -m venv .venv
-          source .venv/bin/activate
-          pip install -r requirements.txt
-          deactivate
+          # Create environment file
+          echo GRAPHQL_TOKEN=${{ secrets.GRAPHQL_TOKEN }} > .env
 
-          # Print version of cronberry being used
-          PATH="/home/$(whoami)/.local/bin:$PATH"
-          cronberry --version
+          # Start docker container
+          make start-prod
 
-          # Update image cache instruction
-          sh scripts/schedule_cache.sh
-
-          # Reload supervisor
-          supervisorctl restart flask_app
+          # Delete environment file
+          rm .env

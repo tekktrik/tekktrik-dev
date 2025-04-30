@@ -14,3 +14,7 @@ venv
 # Project specific files
 flask_app/static/img/gh_cards/**/*.png
 assets/contrib/recent_*.json
+
+# Configuration files and settings
+config.json
+.env

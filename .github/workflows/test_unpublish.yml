@@ -29,19 +29,5 @@ jobs:
           git config pull.rebase true
           git pull --rebase -ff
 
-          # Update the environment
-          rm -rf .venv
-          python3 -m venv .venv
-          source .venv/bin/activate
-          pip install -r requirements.txt
-          deactivate
-
-          # Print version of cronberry being used
-          PATH="/home/$(whoami)/.local/bin:$PATH"
-          cronberry --version
-
-          # Update image cache instruction
-          sh scripts/schedule_cache.sh
-
-          # Stop supervisor
-          supervisorctl stop test_flask_app
+          # Stop docker container
+          make start-test
