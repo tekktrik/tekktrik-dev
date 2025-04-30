@@ -17,7 +17,15 @@ import dateutil.parser
 import dateutil.tz
 
 # import jinja2
-from flask import Flask, Response, redirect, render_template, send_file, url_for
+from flask import (
+    Flask,
+    Response,
+    redirect,
+    render_template,
+    send_file,
+    send_from_directory,
+    url_for,
+)
 from flask_bootstrap import Bootstrap5
 
 # from flask_limiter import Limiter
@@ -133,6 +141,12 @@ def recent() -> str:
         diff_oldest=math.ceil(diff_oldest.days / 365),
         current_datetime=current_datetime_str,
     )
+
+
+@app.route("/gh_cards/<path:filename>")
+def reroute_gh_cards(image_name):
+    """Reroute the path for GitHub cards."""
+    return send_from_directory("assets/gh_cards", image_name)
 
 
 @app.route("/about", methods=["GET"])
