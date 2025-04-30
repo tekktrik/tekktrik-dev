@@ -30,4 +30,4 @@ jobs:
           git pull --rebase -ff
 
           # Stop docker container
-          make start-test
+          make stop-test
