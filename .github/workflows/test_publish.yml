@@ -38,6 +38,3 @@ jobs:
 
           # Start docker container
           make start-test
-
-          # Delete environment file
-          rm .env
