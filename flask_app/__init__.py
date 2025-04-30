@@ -7,20 +7,22 @@ Author: Alec Delaney
 """
 
 import datetime
-import io
+
+# import io
 import json
 import math
 import pathlib
 
 import dateutil.parser
 import dateutil.tz
-import jinja2
+
+# import jinja2
 from flask import Flask, Response, redirect, render_template, send_file, url_for
 from flask_bootstrap import Bootstrap5
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 
-from flask_app.forms import MenorahSetupForm
+# from flask_limiter import Limiter
+# from flask_limiter.util import get_remote_address
+# from flask_app.forms import MenorahSetupForm
 from flask_app.helpers import (
     consolidate_sorted_jobs,
     sort_grouped_jobs,
@@ -30,25 +32,21 @@ from flask_app.helpers import (
 # Initialize the Flask app
 app = Flask(__name__)
 
-# Open the configuration settings file
-with open("/etc/config.json", encoding="utf-8") as jsonfile:
-    config = json.load(jsonfile)
-
 # Disable CSRF for WTForms
 app.config["WTF_CSRF_ENABLED"] = False
 
 # Initialize Bootstrap
 bootstrap = Bootstrap5(app)
 
-# Initialize the rate limiter
-limiter = Limiter(
-    get_remote_address,
-    app=app,
-    default_limits=["50/second"],
-    storage_uri="redis://localhost:6379",
-    storage_options={"socket_connect_timeout": 30},
-    strategy="moving-window",
-)
+# # Initialize the rate limiter
+# limiter = Limiter(
+#     get_remote_address,
+#     app=app,
+#     default_limits=["50/second"],
+#     storage_uri="redis://redis:6379",
+#     storage_options={"socket_connect_timeout": 30},
+#     strategy="moving-window",
+# )
 
 
 @app.template_filter("timestamptodate")
@@ -70,34 +68,34 @@ def menorah_settings() -> Response:
     return redirect("/projects/menorah/settings")
 
 
-@app.route("/projects/menorah/settings", methods=["GET", "POST"])
-@limiter.limit("10/second", key_func=lambda: "menorah-settings")
-def project_menorah_settings() -> str:
-    """Route for creating menorah settings file."""
-    # Get the Menorah setup form
-    input_form = MenorahSetupForm()
+# @app.route("/projects/menorah/settings", methods=["GET", "POST"])
+# @limiter.limit("10/second", key_func=lambda: "menorah-settings")
+# def project_menorah_settings() -> str:
+#     """Route for creating menorah settings file."""
+#     # Get the Menorah setup form
+#     input_form = MenorahSetupForm()
 
-    # Handle form submission validation
-    if input_form.validate_on_submit():
-        # Get the zip code from the form
-        zipcode = input_form.data["zipcode"]
+#     # Handle form submission validation
+#     if input_form.validate_on_submit():
+#         # Get the zip code from the form
+#         zipcode = input_form.data["zipcode"]
 
-        # Add the zip code to the template and render it
-        with open("assets/settings.json", encoding="utf-8") as template_file:
-            template_text = template_file.read()
-        template = jinja2.Template(template_text)
-        rendered_temp = template.render(zipcode=zipcode)
+#         # Add the zip code to the template and render it
+#         with open("assets/settings.json", encoding="utf-8") as template_file:
+#             template_text = template_file.read()
+#         template = jinja2.Template(template_text)
+#         rendered_temp = template.render(zipcode=zipcode)
 
-        # Send the rendered settings file to the user for download
-        file_bytesio = io.BytesIO()
-        file_bytesio.write(rendered_temp.encode("utf-8"))
-        file_bytesio.seek(0)
-        return send_file(
-            file_bytesio, as_attachment=True, download_name="settings.json"
-        )
+#         # Send the rendered settings file to the user for download
+#         file_bytesio = io.BytesIO()
+#         file_bytesio.write(rendered_temp.encode("utf-8"))
+#         file_bytesio.seek(0)
+#         return send_file(
+#             file_bytesio, as_attachment=True, download_name="settings.json"
+#         )
 
-    # Render the HTML template
-    return render_template("projects/menorah/settings.html", input_form=input_form)
+#     # Render the HTML template
+#     return render_template("projects/menorah/settings.html", input_form=input_form)
 
 
 @app.route("/recent", methods=["GET"])
@@ -141,7 +139,7 @@ def recent() -> str:
 def about() -> str:
     """Route for about me page."""
     # Load the jobs files and initialize them in a list
-    jobs_path = pathlib.Path("assets/about/jobs")
+    jobs_path = pathlib.Path("assets/app/about/jobs")
     jobs = []
     for job_path in jobs_path.glob("*.json"):
         with open(job_path, encoding="utf-8") as jobfile:
@@ -161,7 +159,7 @@ def about() -> str:
     jobs_lists.sort(key=sort_grouped_jobs, reverse=True)
 
     # Load the education files and initialize them in a list
-    education_paths = pathlib.Path("assets/about/education")
+    education_paths = pathlib.Path("assets/app/about/education")
     educations = []
     for education_path in education_paths.glob("*.json"):
         with open(education_path, encoding="utf-8") as edufile:
@@ -183,7 +181,7 @@ def about() -> str:
 def other(pagenum: str = "1") -> str:
     """Route for other work page."""
     # Load the other activities files and initialize them in a list
-    other_path = pathlib.Path("assets/other")
+    other_path = pathlib.Path("assets/app/other")
     other_works = []
     for other_filepath in other_path.glob("*.json"):
         with open(other_filepath, encoding="utf-8") as otherfile:

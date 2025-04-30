@@ -6,8 +6,7 @@
 # card images, useful when errors occur and need to be fixed
 # on the server
 
-REPOPATH=$(realpath .)
-PATH="$REPOPATH/.venv/bin:$PATH"
-SCRIPTPATH="$REPOPATH/scripts/graphql.py"
+SCRIPTSPATH="/cron"
+UPDATESCRIPTPATH="$SCRIPTSPATH/scripts/graphql.py"
 
-python "$SCRIPTPATH" "$REPOPATH" --now
+python "$UPDATESCRIPTPATH" "$SCRIPTSPATH" --now

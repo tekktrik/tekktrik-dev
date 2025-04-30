@@ -29,9 +29,9 @@ base_dir = pathlib.Path(sys.argv[1])
 # Get all the necessary paths needed to delete relevant files
 # (stored JSON response file and repository image cards and
 # parent directory)
-resp_dir = base_dir / "assets/contrib/"
+resp_dir = base_dir / "contrib/"
 old_resp_file = resp_dir / ("recent_" + last_datetime_str + ".json")
-parent_card_dir = base_dir / "flask_app/static/img/gh_cards/"
+parent_card_dir = base_dir / "gh_cards/"
 old_card_dir = parent_card_dir / last_datetime_str
 
 # Delete the store JSON response file
