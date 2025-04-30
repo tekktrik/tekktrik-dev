@@ -24,6 +24,7 @@ RUN pip install -r requirements.txt
 RUN sh scripts/update_cache.sh
 
 # Install and start cron
+RUN apt-get install debian-archive-keyring -y
 RUN apt-get update
 RUN apt-get install cron -y
 RUN service cron start
