@@ -32,6 +32,3 @@ jobs:
 
           # Start docker container
           make start-prod
-
-          # Delete environment file
-          rm .env
