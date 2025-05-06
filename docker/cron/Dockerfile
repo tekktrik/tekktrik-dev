@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 # Use a base Python docker image
-FROM python:3.12.10-bookworm
+FROM python:3.12.10-slim-bookworm
 
 # Set the working directory to cron
 WORKDIR /cron
