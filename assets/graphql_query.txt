@@ -8,7 +8,7 @@ query {
       }
     }
     repositories (
-      first: 25,
+      first: 20,
       orderBy: {
         field: PUSHED_AT,
         direction: DESC,
