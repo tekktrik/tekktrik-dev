@@ -8,7 +8,6 @@ Author: Alec Delaney
 
 import datetime
 
-# import io
 import json
 import math
 import pathlib
