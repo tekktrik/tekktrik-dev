@@ -7,7 +7,6 @@ Author: Alec Delaney
 """
 
 import datetime
-
 import json
 import math
 import pathlib
@@ -94,7 +93,9 @@ def recent() -> str:
     # Check if the files are there, use the original image URL if there was an error
     soup = bs4.BeautifulSoup(rendered, "html.parser")
     for index, repo in enumerate(repos["nodes"]):
-        if not pathlib.Path(f"flask_app/static/img/gh_cards/{current_datetime_str}/card{index}.png").exists():
+        if not pathlib.Path(
+            f"flask_app/static/img/gh_cards/{current_datetime_str}/card{index}.png"
+        ).exists():
             img = soup.find("img", {"id": f"gh_card_img{index}"})
             img["src"] = repo["openGraphImageUrl"]
             rendered = soup.prettify()
