@@ -7,10 +7,12 @@ FROM python:3.12.10-slim-bookworm
 # Set the working directory to cron
 WORKDIR /cron
 
+ARG GRAPHQL_TOKEN
+ENV GRAPHQL_TOKEN=$GRAPHQL_TOKEN
+
 # Copy necessary folders
 COPY scripts/ scripts/
 COPY assets/ assets/
-COPY .env .env
 
 # Make directories necessary for caching
 RUN mkdir contrib

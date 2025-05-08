@@ -17,10 +17,14 @@ services:
     build:
       context: ../
       dockerfile: docker/cron/Dockerfile
+      args:
+        GRAPHQL_TOKEN: ${GRAPHQL_TOKEN}
       no_cache: true
     volumes:
       - prod-contrib:/cron/contrib
       - prod-gh_cards:/cron/gh_cards
+    env_file:
+      - ../.env
 
 volumes:
   prod-contrib:
