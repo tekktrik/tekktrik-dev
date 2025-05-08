@@ -22,7 +22,7 @@
         {% endif %}
             <div class="col-lg-6">
                 <div class="card recent-load-in{% if loop.index0 % 2 == 0 %} mb-2 mb-lg-0{% endif %}" style="--delay: {{ loop.index0 * 0.2 + 0.2}}s;">
-                    <a href="{{ repo.url }}" aria-label="Link to {{ repo.name }}"><img src="/static/img/gh_cards/{{ current_datetime }}/card{{ loop.index0 }}.png" class="card-img-top" alt="Image summary statistics for {{ repo.name }}"/></a>
+                    <a href="{{ repo.url }}" aria-label="Link to {{ repo.name }}"><img src="/static/img/gh_cards/{{ current_datetime }}/card{{ loop.index0 }}.png" class="card-img-top" id="gh_card_img{{ loop.index0 }}" alt="Image summary statistics for {{ repo.name }}"/></a>
                     <div class="card-body rounded-bottom" style="background-color: white;">
                         {% if repo.languages.nodes|length == 0 %}
                             <span class="badge badge-other-language">Other</span>

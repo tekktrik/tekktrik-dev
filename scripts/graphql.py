@@ -11,7 +11,6 @@ import sys
 import time
 
 import dateutil.tz
-import dotenv
 import requests
 
 # Store the GraphQL API URL and date format for files
@@ -50,9 +49,6 @@ parent_card_dir.mkdir(exist_ok=True)
 # Create a directory for the specific repository image cards for the given datetime
 new_card_dir = parent_card_dir / next_datetime_str
 new_card_dir.mkdir(exist_ok=True)
-
-# Load the environment file
-dotenv.load_dotenv("/cron/.env")
 
 # Get the GraphQL query from the text file
 with open(base_dir / "assets/graphql_query.txt", encoding="utf-8") as queryfile:

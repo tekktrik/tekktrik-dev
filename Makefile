@@ -1,6 +1,9 @@
 # SPDX-FileCopyrightText: 2024 Alec Delaney
 # SPDX-License-Identifier: MIT
 
+include .env
+export
+
 .PHONY: start-prod
 start-prod:
 	docker compose -f docker/prod-docker-compose.yaml up -d --build
