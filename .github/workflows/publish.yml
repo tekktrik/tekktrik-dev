@@ -31,4 +31,5 @@ jobs:
           echo GRAPHQL_TOKEN=${{ secrets.GRAPHQL_TOKEN }} > .env
 
           # Start docker container
+          make stop-prod
           make start-prod
