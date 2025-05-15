@@ -4,20 +4,22 @@
 # Use a base Python docker image
 FROM python:3.12.10-alpine
 
-# Set the working directory to app
-WORKDIR /app
+# Set the working directory to cache
+WORKDIR /cache
+
+ARG GRAPHQL_TOKEN
+ENV GRAPHQL_TOKEN=${GRAPHQL_TOKEN}
 
 # Install Python app dependencies
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-# Copy necessary folders
+# Make directories necessary for caching
 COPY scripts/ scripts/
 COPY assets/ assets/
-COPY flask_app/ flask_app/
+COPY flask_app/static/img/gh_cards gh_cards/
 
-# Expose port for gunicorn
-EXPOSE 8000
+WORKDIR /cache/scripts
 
-# Start gunicorn and serve website
-CMD ["gunicorn", "--workers=3", "-k", "eventlet", "-b", "0.0.0.0:8000", "flask_app:app"]
+# Start the cache script
+CMD ["python", "manage_downloads.py"]

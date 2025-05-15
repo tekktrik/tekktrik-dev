@@ -31,9 +31,6 @@ CI to update the Flask app running the main site with the new additions.
 
 ## Tooling
 
-Ojne of the Docker containers has a cronjob that updates the server by saving the results of a
-GraphQL query to GitHub to download information about contributions every hour (as well as delete
-outdated information).  It uses a tool I created called
-[cronberry](https://github.com/tekktrik/cronberry), which manages updating the crontab during
-updates to ``main``, though this is partially a holdover from pre-containerization.  I use
-pre-commit for ensuring code is formatted, linted, and conforms to REUSE specifications.
+A second container manages the downloading and deletion of GitHub contribution information,
+which is cached temporarily instead of making GitHub API calls for every page refresh.  I
+use pre-commit for ensuring code is formatted, linted, and conforms to REUSE specifications.

@@ -30,6 +30,14 @@ jobs:
           # Create environment file
           echo GRAPHQL_TOKEN=${{ secrets.GRAPHQL_TOKEN }} > .env
 
+          # Recreate virtual environment
+          rm -rf .venv
+          python3.12 -m venv .venv
+          source .venv/bin/activate
+
+          # Download dependencies
+          python -m pip install -r requirements.txt
+
           # Start docker container
           make stop-prod
           make start-prod

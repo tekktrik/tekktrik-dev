@@ -6,19 +6,23 @@ export
 
 .PHONY: start-prod
 start-prod:
+	sh scripts/update_cache.sh
 	docker compose -f docker/prod-docker-compose.yaml up -d --build
+	sh scripts/delete_artifacts.sh
 
 .PHONY: start-test
 start-test:
+	sh scripts/update_cache.sh
 	docker compose -f docker/test-docker-compose.yaml up -d --build
+	sh scripts/delete_artifacts.sh
 
 .PHONY: stop-prod
 stop-prod:
-	docker compose -f docker/prod-docker-compose.yaml down prod-app prod-cron --volumes
+	docker compose -f docker/prod-docker-compose.yaml down prod-app prod-cache --volumes
 
 .PHONY: stop-test
 stop-test:
-	docker compose -f docker/test-docker-compose.yaml down test-app test-cron --volumes
+	docker compose -f docker/test-docker-compose.yaml down test-app test-cache --volumes
 
 .PHONY: lint
 lint:

@@ -6,7 +6,10 @@
 # card images, useful when errors occur and need to be fixed
 # on the server
 
-SCRIPTSPATH="/cron"
-UPDATESCRIPTPATH="$SCRIPTSPATH/scripts/graphql.py"
+CURRENTPATH=$(pwd)
+UPDATESCRIPTPATH="$CURRENTPATH/scripts/graphql.py"
+ASSETSPATH="$CURRENTPATH/assets"
+CONTRIBPATH="$ASSETSPATH/contrib"
+GHCARDPATH="$CURRENTPATH/flask_app/static/img/gh_cards"
 
-python "$UPDATESCRIPTPATH" "$SCRIPTSPATH" --now
+python "$UPDATESCRIPTPATH" "$ASSETSPATH" "$GHCARDPATH" 0

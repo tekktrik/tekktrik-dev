@@ -12,17 +12,16 @@ services:
       - prod-contrib:/app/assets/contrib
       - prod-gh_cards:/app/flask_app/static/img/gh_cards
     depends_on:
-      - prod-cron
-  prod-cron:
+      - prod-cache
+  prod-cache:
     build:
       context: ../
-      dockerfile: docker/cron/Dockerfile
+      dockerfile: docker/cache/Dockerfile
       args:
         GRAPHQL_TOKEN: ${GRAPHQL_TOKEN}
-      no_cache: true
     volumes:
-      - prod-contrib:/cron/contrib
-      - prod-gh_cards:/cron/gh_cards
+      - prod-contrib:/cache/assets/contrib
+      - prod-gh_cards:/cache/gh_cards
     env_file:
       - ../.env
 
