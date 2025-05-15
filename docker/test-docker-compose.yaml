@@ -12,17 +12,16 @@ services:
       - test-contrib:/app/assets/contrib
       - test-gh_cards:/app/flask_app/static/img/gh_cards
     depends_on:
-      - test-cron
-  test-cron:
+      - test-cache
+  test-cache:
     build:
       context: ../
-      dockerfile: docker/cron/Dockerfile
+      dockerfile: docker/cache/Dockerfile
       args:
         GRAPHQL_TOKEN: ${GRAPHQL_TOKEN}
-      no_cache: true
     volumes:
-      - test-contrib:/cron/contrib
-      - test-gh_cards:/cron/gh_cards
+      - test-contrib:/cache/assets/contrib
+      - test-gh_cards:/cache/gh_cards
     env_file:
       - ../.env
 
