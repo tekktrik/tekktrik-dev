@@ -14,7 +14,7 @@
 
 {% block content %}
 <p class="lead text-center">I've made {{ num_contributions }} contributions in the past {{ duration_days }} days!</p>
-<p class="text-center">Here are some repositories I've contributed to within the last {{ diff_oldest }} years:</p>
+<p class="text-center">Here are some repositories I've contributed to within the last {{ diff_oldest }} year{% if diff_oldest != 1 %}s{% endif %}:</p>
 <div class="container">
     {% for repo in repos %}
         {% if loop.index0 % 2 == 0 %}
