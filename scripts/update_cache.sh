@@ -12,4 +12,9 @@ ASSETSPATH="$CURRENTPATH/assets"
 CONTRIBPATH="$ASSETSPATH/contrib"
 GHCARDPATH="$CURRENTPATH/flask_app/static/img/gh_cards"
 
+
+if [ $(date +%M) -ge 50 ]; then
+    python "$UPDATESCRIPTPATH" "$ASSETSPATH" "$GHCARDPATH" 15
+fi
+
 python "$UPDATESCRIPTPATH" "$ASSETSPATH" "$GHCARDPATH" 0
