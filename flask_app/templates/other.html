@@ -10,9 +10,9 @@
 <div class="row d-flex pb-4">
     <div class="col-lg-6 mx-auto">
         <div class="card border-white">
-            <a href="{{ work.url }}" aria-label="{{ work.aria_label }}">
+            {% if work.url %}<a href="{{ work.url }}" aria-label="{{ work.aria_label }}">{% endif %}
                 <img src="{{ work.image }}" class="card-img-top" alt="{{ work.alt_text }}">
-            </a>
+            {% if work.url %}</a>{% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ work.name }}</h5>
                 <p class="card-text">{{ work.description }}</p>

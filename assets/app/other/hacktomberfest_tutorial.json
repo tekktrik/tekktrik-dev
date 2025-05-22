@@ -1,8 +1,8 @@
 {
     "name": "Community Help Desk - Hacktoberfest Tutoral",
     "image": "/static/img/hacktoberfest_tutorial.png",
-    "aria_label": "",
-    "alt_text": "",
+    "aria_label": "Watch the Hacktoberfest tutorial video on YouTube",
+    "alt_text": "Snapshot of my computer screen from the Hacktoberfest tutorial video",
     "description": "Alec (Tekktrik) hosts a special edition tutorial of the Community Help Desk to get you started on contributing to CircuitPython as part of Hacktoberfest.  Learn what software you'll need and how the contribution process works.  Whether you're new to contributing to CircuitPython or to open source in general, this tutorial will get you all set to contribute.",
     "url": "https://www.youtube.com/watch?v=APTUQbQSBq4",
     "datetime": 1664771944
