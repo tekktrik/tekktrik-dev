@@ -1,8 +1,8 @@
 {
     "name": "CircuitPython Show: Continuous Integration and the CircuitPythonukiah",
     "image": "/static/img/circuitpythonukiah_diagram.png",
-    "aria_label": "",
-    "alt_text": "",
+    "aria_label": "Listen to the CircuitPython Show podcast episode about continuous integration and the CircuitPythonukiah",
+    "alt_text": "PCB diagram of the CircuitPythonukiah",
     "description": "Alec Delaney joins Paul and they discuss how CircuitPython uses continuous integration for development and Alec's CircuitPythonukiah project.",
     "url": "https://www.circuitpythonshow.com/@circuitpythonshow/episodes/alec-delaney",
     "datetime": 1670823544

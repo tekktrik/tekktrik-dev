@@ -1,8 +1,8 @@
 {
     "name": "CircuitPython Day 2022 Development Sprint Introduction",
     "image": "/static/img/circuitpython_dev_sprint_intro.png",
-    "aria_label": "",
-    "alt_text": "",
+    "aria_label": "Watch the CircuitPython Day development sprint introduction video",
+    "alt_text": "Kattni and I on camera, discussing the development sprint for CircuitPython Day 2022",
     "description": "Join Alec and Kattni for a quick introduction to the CircuitPython Development Sprint. It's a Q&A covering questions that folks interested in joining the sprints might have.",
     "url": "https://www.youtube.com/watch?v=H-LbCRVCTfo",
     "datetime": 1660883944
