@@ -5,6 +5,19 @@
     "startDate": "05/2024",
     "endDate": null,
     "time": "Full-Time",
-    "duties": [],
-    "skills": []
+    "duties": [
+        "Owning the testing of product and hardware advancements in Bevi's smart water coolers",
+        "Managing test engineers and technicians within the Systems Integration and Test team",
+        "Driving characterization and integration testing during new product development",
+        "Providing expertise in test fixture and process development for fellow hardware engineers"
+    ],
+    "skills": [
+        "team management",
+        "test fixture design",
+        "test process development",
+        "data analysis",
+        "Python",
+        "CircuitPython",
+        "Arduino"
+    ]
 }
