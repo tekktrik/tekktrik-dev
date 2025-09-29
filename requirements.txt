@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-beautifulsoup4~=4.13
+beautifulsoup4~=4.14
 bootstrap-flask~=2.5
 flask~=3.1
 gunicorn[eventlet]~=23.0
