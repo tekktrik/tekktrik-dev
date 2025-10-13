@@ -59,7 +59,11 @@ def download(assets_dir: os.PathLike, parent_card_dir: os.PathLike, delay: int) 
     )
 
     # Parse the request for a subset of the returned data (the "user" key)
-    json_resp = json.loads(resp.content)["data"]["user"]
+    content = json.loads(resp.content)
+    try:
+        json_resp = content["data"]["user"]
+    except KeyError:
+        raise PermissionError(content["message"])
 
     # Store the subset of data in a JSON file for later use
     with open(new_resp_file, mode="w", encoding="utf-8") as contribfile:
