@@ -16,7 +16,10 @@ import click
 @click.command()
 @click.argument("dt")
 def main(dt: str) -> None:
-    """Print the timestamp for the given datetime."""
+    """Print the timestamp for the given datetime.
+
+    Should be given as (M)M/(D)D/(YY)YY@(H)H:MM:SS
+    """
     # Match the required regex pattern
     result = re.match(
         r"(\d{1,2})/(\d{1,2})/(\d\d|\d\d\d\d)@(\d{1,2}):(\d\d):(\d\d)", dt
