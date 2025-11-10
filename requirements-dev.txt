@@ -2,4 +2,4 @@
 # SPDX-License-Identifier: MIT
 
 click~=8.3
-pre-commit~=4.3
+pre-commit~=4.4
