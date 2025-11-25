@@ -50,6 +50,10 @@
     color: black;
 }
 
+.badge-dockerfile {
+    background-color: rgb(56, 77, 84);
+}
+
 .badge-other-language {
     background-color: rgb(47, 54, 61);
 }
