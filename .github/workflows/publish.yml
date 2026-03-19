@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Update and deploy on server
-      uses: appleboy/ssh-action@v1.0.1
+      uses: appleboy/ssh-action@v1.2.5
       with:
         host: tekktrik.dev
         username: ${{ secrets.USERNAME }}
