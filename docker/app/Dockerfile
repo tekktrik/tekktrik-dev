@@ -20,4 +20,4 @@ COPY flask_app/ flask_app/
 EXPOSE 8000
 
 # Start gunicorn and serve website
-CMD ["gunicorn", "--workers=3", "-k", "eventlet", "-b", "0.0.0.0:8000", "flask_app:app"]
+CMD ["gunicorn", "--workers=3", "--thread=3", "-b", "0.0.0.0:8000", "flask_app:app"]
