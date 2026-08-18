@@ -37,10 +37,13 @@ def delete(contrib_dir: os.PathLike, parent_card_dir: os.PathLike, delay: int) -
     # Delete the store JSON response file
     old_resp_file.unlink(missing_ok=True)
 
-    # Delete the repository image cards and parent directory
-    for card in old_card_dir.glob("*"):
-        card.unlink(missing_ok=True)
-    old_card_dir.rmdir()
+    # Delete the repository image cards and parent directory (if necessary)
+    try:
+        for card in old_card_dir.glob("*"):
+            card.unlink(missing_ok=True)
+        old_card_dir.rmdir()
+    except FileNotFoundError:
+        pass
 
 
 if __name__ == "__main__":
