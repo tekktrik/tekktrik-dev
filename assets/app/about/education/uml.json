@@ -1,10 +1,10 @@
 {
-    "school": "University of Massachusetts",
+    "school": "University of Massachusetts Lowell",
     "degree": "Master of Science",
     "major": "Computer Engineering",
-    "focus": "Computing and Embedded Systems Hardware and Architecture",
+    "focus": "Comaputer Architecture and Embedded Systems",
     "location": "Lowell, MA, USA",
     "startYear": 2022,
-    "endYear": null,
+    "endYear": 2026,
     "gpa": 4.0
 }
