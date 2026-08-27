@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 beautifulsoup4~=4.15
-bootstrap-flask~=2.5
+bootstrap-flask~=2.6
 flask~=3.1
 gunicorn~=26.1
 python-dateutil~=2.9
