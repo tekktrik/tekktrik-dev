@@ -6,12 +6,14 @@ export
 
 .PHONY: start-prod
 start-prod:
+	npm install
 	sh scripts/update_cache.sh
 	docker compose -f docker/prod-docker-compose.yaml up -d --build
 	sh scripts/delete_artifacts.sh
 
 .PHONY: start-test
 start-test:
+	npm install
 	sh scripts/update_cache.sh
 	docker compose -f docker/test-docker-compose.yaml up -d --build
 	sh scripts/delete_artifacts.sh
