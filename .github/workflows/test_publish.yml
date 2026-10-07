@@ -30,7 +30,7 @@ jobs:
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
           # Change to directory
-          cd /srv/www/test-tekktrik-dev
+          cd /srv/www/test/tekktrik-dev
 
           # Update the repository
           git fetch
