@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 # Use a base Python docker image
-FROM python:3.12.10-alpine
+FROM python:3.14.10-alpine
 
 # Set the working directory to cache
 WORKDIR /cache

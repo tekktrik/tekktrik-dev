@@ -3,12 +3,12 @@
 
 repos:
   - repo: https://github.com/fsfe/reuse-tool
-    rev: v5.0.2
+    rev: v6.3.0
     hooks:
       - name: Run REUSE
         id: reuse
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - name: Check YAML
         id: check-yaml
@@ -17,7 +17,7 @@ repos:
       - name: Trim trailing whitespace
         id: trailing-whitespace
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.1
+    rev: v0.17.5
     hooks:
       - id: ruff
         name: Lint via ruff

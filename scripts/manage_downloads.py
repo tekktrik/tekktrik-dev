@@ -15,7 +15,7 @@ DATETIME_FMT = "%Y%m%d%H"
 def get_time_strs() -> tuple[str, str]:
     """Get the download and deletion datetime strings."""
     # Get the current datetime
-    tz = datetime.timezone.utc
+    tz = datetime.UTC
     current_datetime = datetime.datetime.now(tz)
 
     # Get the download datetime string based on the delay
@@ -33,7 +33,7 @@ last_download_str, last_deletion_str = get_time_strs()
 
 while True:
     # Get the current datetime
-    tz = datetime.timezone.utc
+    tz = datetime.UTC
     current_datetime = datetime.datetime.now(tz)
 
     # Get the download datetime string based on the delay
