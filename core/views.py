@@ -11,8 +11,6 @@ from django.shortcuts import render
 
 from .models import Education, Employer, Employment
 
-# Create your views here.
-
 
 def index(request: WSGIRequest):
     """Index view."""
