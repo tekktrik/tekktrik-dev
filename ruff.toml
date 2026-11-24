@@ -1,5 +1,0 @@
-# SPDX-FileCopyrightText: 2024 Alec Delaney
-# SPDX-License-Identifier: MIT
-
-lint.select = ["D", "PL", "UP", "I"]
-lint.ignore = ["D213", "D203"]

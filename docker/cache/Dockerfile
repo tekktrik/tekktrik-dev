@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2025 Alec Delaney
 # SPDX-License-Identifier: MIT
 
+# TODO: Update this for Django and uv
+
 # Use a base Python docker image
 FROM python:3.14.10-alpine
 

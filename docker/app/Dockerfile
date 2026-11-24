@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2025 Alec Delaney
 # SPDX-License-Identifier: MIT
 
+# TODO: Update this for Django and uv
+
 # Use a base Python docker image
 FROM python:3.14.10-alpine
 
@@ -15,13 +17,6 @@ RUN pip install -r requirements.txt
 COPY scripts/ scripts/
 COPY assets/ assets/
 COPY flask_app/ flask_app/
-
-# Copy Bootstrap
-COPY node_modules/bootstrap/dist/ flask_app/static/vendor/bootstrap/dist/
-
-# Copy Bootstrap icons
-COPY node_modules/bootstrap-icons/font/bootstrap-icons.min.css flask_app/static/vendor/bootstrap-icons/bootstrap-icons.min.css
-COPY node_modules/bootstrap-icons/font/fonts/ flask_app/static/vendor/bootstrap-icons/fonts/
 
 # Expose port for gunicorn
 EXPOSE 8000

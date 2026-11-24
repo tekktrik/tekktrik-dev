@@ -62,8 +62,8 @@ def download(assets_dir: os.PathLike, parent_card_dir: os.PathLike, delay: int) 
     content = json.loads(resp.content)
     try:
         json_resp = content["data"]["user"]
-    except KeyError:
-        raise PermissionError(content["message"])
+    except KeyError as err:
+        raise PermissionError(content["message"]) from err
 
     # Store the subset of data in a JSON file for later use
     with open(new_resp_file, mode="w", encoding="utf-8") as contribfile:
@@ -88,9 +88,10 @@ def download(assets_dir: os.PathLike, parent_card_dir: os.PathLike, delay: int) 
                             imgfile.write(data_chunk)
                     break
             # If a timeout occurs, attempt the request again
-            except (TimeoutError, requests.exceptions.ReadTimeout):
+            except TimeoutError, requests.exceptions.ReadTimeout:
                 pass
-            # Add mandatory execution delay to prevent constant timeouts and rate limiting
+            # Add mandatory execution delay to prevent constant timeouts
+            # and rate limiting
             finally:
                 if index != len_nodes - 1:
                     time.sleep(1)

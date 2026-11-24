@@ -1,0 +1,66 @@
+# SPDX-FileCopyrightText: 2026 Alec Delaney
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "tekktrik-dev"
+version = "0.1.0"
+description = "Project configuration file for tekktrik.dev"
+readme = "README.md"
+authors = [
+    { name = "Alec Delaney", email = "tekktrik@gmail.com" }
+]
+requires-python = ">=3.14.10"
+dependencies = [
+    "beautifulsoup4~=4.15",
+    "django~=6.1",
+    "django-bootstrap5~=26.4",
+    "gunicorn~=27.0",
+    "python-dateutil~=4.0",
+    "requests~=2.34",
+]
+
+[dependency-groups]
+dev = [
+    "click~=8.5",
+    "pre-commit~=4.7",
+]
+
+[tool.ruff]
+exclude = [
+    "manage.py",
+    "*/migrations",
+]
+
+[tool.ruff.lint]
+select = [
+    "B",
+    "C90",
+    "D",
+    "DJ",
+    "E",
+    "F",
+    "I",
+    "PL",
+    "RUF",
+    "S",
+    "UP",
+    "W",
+]
+ignore = ["D213", "D203"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101"]
+"*_test.py" = ["S101"]
+"test_*.py" = ["S101"]
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "manage.py",
+    "*/settings.py",
+    "*/admin.py",
+    "*/apps.py",
+    "*/migrations/*",
+    "tekktrik_dev/asgi.py",
+    "tekktrik_dev/wsgi.py",
+]

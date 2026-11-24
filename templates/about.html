@@ -5,6 +5,8 @@
 
 {% extends "layout/_layout.html" %}
 
+{% load static %}
+
 {% block head %}<link rel="stylesheet" href="/static/css/animations.css">{% endblock %}
 
 {% block title %}About Me{% endblock %}
@@ -13,7 +15,7 @@
     <div class="fade-fly-in" style="--delay: 0s">
         <div class="row d-flex align-items-center">
             <div class="col-lg-6 col-xl-4 mb-3 mb-lg-0">
-                <img class="img-fluid profile-image" src="static/img/tekkno_wings.jpg" alt="Image of myself (Alec) with light-up wings behind me">
+                <img class="img-fluid profile-image" src="{% static 'img/tekkno_wings.jpg' %}" alt="Image of myself (Alec) with light-up wings behind me">
             </div>
             <div class="col-lg-6 col-xl-8 align-items-center">
                 <h2>About Me:</h2>
@@ -42,34 +44,35 @@
     <div class="fade-fly-in" style="--delay: 1s">
         <h2>Professional Experience</h2>
         <div class="accordion" id="jobAccordion">
-            {% for jobs_list in jobs_lists %}
-                {% set employer = jobs_list[0].employer %}
+            {% for employer, jobs in employments %}
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ loop.index }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ forloop.counter0 }}">
                             <strong>{{ employer }}</strong>:
-                            ({{ jobs_list[-1].startDate }} - {{ jobs_list[0].endDate }})
+                            {% with first_role=jobs|last last_role=jobs|first%}
+                                ({{ first_role.simple_start_date }} - {{ last_role.simple_end_date }})
+                            {% endwith %}
                         </button>
                     </h3>
-                    <div class="accordion-collapse collapse" id="job{{ loop.index }}" data-bs-parent="#jobAccordion">
+                    <div class="accordion-collapse collapse" id="job{{ forloop.counter0 }}" data-bs-parent="#jobAccordion">
                         <div class="accordion-body">
-                            {% for job in jobs_list %}
-                            <div>
-                                <h4>{{ job.title }}</h4>
-                                <h6>{{ job.startDate }} - {{ job.endDate }}</h6>
-                                <p>[<i>{{ job.time }}</i>]</p>
-                                <ul class="list-group">
-                                    {% for duty in job.duties %}
-                                    <li class="list-group-item">
-                                        {{ duty }}
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            {% for skill in job.skills %}
-                            <span class="badge bg-primary my-2">{{ skill }}</span>
-                            {% endfor %}
-                            {% if loop.index != jobs_list|length %}<hr/>{% endif %}
+                            {% for job in jobs %}
+                                <div>
+                                    <h4>{{ job.title }}</h4>
+                                    <h6>{{ job.simple_start_date }} - {{ job.simple_end_date }}</h6>
+                                    <p>[<i>{{ job.employment_type }}</i>]</p>
+                                    <ul class="list-group">
+                                        {% for duty in job.duties_list %}
+                                        <li class="list-group-item">
+                                            {{ duty }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% for skill in job.skills_list %}
+                                    <span class="badge bg-primary my-2">{{ skill }}</span>
+                                {% endfor %}
+                                {% if forloop.counter0 != jobs_list|length %}<hr/>{% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -94,7 +97,7 @@
                             <p>GPA: {{ education.gpa }}</p>
                             <p>{{ education.location }}</p>
                         </div>
-                        <div class="card-footer">{{ education.startYear }} - {{ education.endYear }}</div>
+                        <div class="card-footer">{{ education.start_year }} - {{ education.end_year }}</div>
                     </div>
                 </div>
                 {% endfor %}
