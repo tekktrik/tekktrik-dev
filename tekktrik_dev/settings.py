@@ -35,6 +35,7 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").strip('"').split(" ")
 
 INSTALLED_APPS = [
     "core",
+    "blog",
     "django_bootstrap5",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -162,3 +163,8 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+# Uploaded media information
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

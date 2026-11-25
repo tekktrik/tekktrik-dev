@@ -1,0 +1,47 @@
+<!--
+    SPDX-FileCopyrightText: 2024 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+{% extends "layout/_layout.html" %}
+
+{% block head %}<link rel="stylesheet" href="/static/css/animations.css">{% endblock %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<p class="lead text-center">Check out some of my other contributions and work!</p>
+<div class="container align-items-center">
+    {% for blog_entry in page_obj %}
+        <div class="row d-flex pb-4">
+            <div class="col-lg-6 mx-auto">
+                <div class="card border-white">
+                    {% if blog_entry.link %}<a href="{{ blog_entry.link }}" aria-label="{{ blog_entry.aria_label }}">{% endif %}
+                        <img src="{{ blog_entry.image.url }}" class="card-img-top" alt="{{ blog_entry.alt_text }}">
+                    {% if blog_entry.link %}</a>{% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog_entry.title }}</h5>
+                        <p class="card-text">{{ blog_entry.description }}</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ blog_entry.date }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<nav aria-label="Navigation for other works">
+    <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+    {% endif %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+    {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+    {% endif %}
+    </ul>
+</nav>
+{% endblock %}

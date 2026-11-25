@@ -184,3 +184,6 @@ staticfiles/
 
 # Ignore sandbox files
 sandbox/
+
+# Uploaded media files
+media/
