@@ -23,7 +23,8 @@ start-test:
 
 .PHONY: start-debug
 start-debug:
-	. .venv/bin/activate && python manage.py runserver 127.0.0.1:8001
+	uv run python manage.py sync_contributions
+	uv run python manage.py runserver 127.0.0.1:8001
 
 .PHONY: stop-prod
 stop-prod:
