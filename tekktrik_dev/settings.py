@@ -36,6 +36,7 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").strip('"').split(" ")
 INSTALLED_APPS = [
     "core",
     "blog",
+    "contributions",
     "django_bootstrap5",
     "django.contrib.admin",
     "django.contrib.auth",

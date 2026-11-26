@@ -25,12 +25,14 @@ from django.contrib import admin
 from django.urls import path
 
 import blog.views
+import contributions.views
 import core.views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", core.views.index),
     path("about/", core.views.about),
+    path("recent/", contributions.views.recent),
     path("other/", blog.views.blog),
 ]
 

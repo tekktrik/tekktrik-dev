@@ -11,12 +11,10 @@ authors = [
 ]
 requires-python = ">=3.14.10"
 dependencies = [
-    "beautifulsoup4~=4.15",
     "django~=6.1",
     "django-bootstrap5~=26.4",
     "gunicorn~=27.0",
     "pillow>=13.0.0",
-    "python-dateutil~=4.0",
     "requests~=2.34",
 ]
 

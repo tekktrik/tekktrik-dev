@@ -4,22 +4,23 @@ Code and infrastructure for https://tektkrik.dev
 
 ## Backend
 
-The website backend is implemented in Python using Flask, using a mixture of static pages and
-templates rendered using the Jinja engine. Static files like images and CSS are found within
-the Flask app, but additional files used by templates such as JSON files can be found in the
-``assets/`` folder.  Everything is containerized via Docker containers.
+The website backend is implemented in Python using Django, using a mixture of static and
+dynamic pages. Some static files like images and CSS are found within this repository,
+but additional files may be uploaded (such as blog post images).  Everything is
+containerized via Docker containers.
 
 ## Web Server
 
 NGINX is used as a reverse proxy web server to serve content to clients. NGINX is also set up
 to serve the static assets more efficiently. Gunicorn is used as the WSGI HTTP server that
-actually runs the Flask code. Supervisor and systemd are used to startup the site on bootup,
+actually runs the Django site. Supervisor and systemd are used to startup the site on bootup,
 as well as restart it if needed. All of this runs on a shared Linode Compute instance.
 
 ## UI
 
 The UI is implemented using Bootstrap, which has plenty of available components to use. It
-also allows customization of the design from mobile to desktop.
+also allows customization of the design from mobile to desktop.  Future iterations may switch
+to using React or something, but for now frontend code live in the templates.
 
 ## Publishing Workflow & Test Server
 

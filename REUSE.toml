@@ -23,3 +23,9 @@ path = "blog/migrations/*.py"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Alec Delaney"
 SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "contributions/migrations/*.py"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Alec Delaney"
+SPDX-License-Identifier = "MIT"
