@@ -38,16 +38,8 @@ jobs:
           git config pull.rebase true
           git pull --rebase -ff
 
-          # Create environment file
-          echo GRAPHQL_TOKEN=${{ secrets.GRAPHQL_TOKEN }} > .env
-
-          # Recreate virtual environment
-          rm -rf .venv
-          python3.12 -m venv .venv
-          source .venv/bin/activate
-
-          # Download dependencies
-          python -m pip install -r requirements.txt
+          # Sync virtual environment
+          uv sync --locked
 
           # Start docker container
           make start-test
