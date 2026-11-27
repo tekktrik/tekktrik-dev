@@ -1,27 +1,26 @@
 # SPDX-FileCopyrightText: 2025 Alec Delaney
 # SPDX-License-Identifier: MIT
 
-# TODO: Update this for Django and uv
-
 # Use a base Python docker image
-FROM python:3.14.10-alpine
+FROM ghcr.io/astral-sh/uv:python3.14-alpine
 
 # Set the working directory to cache
 WORKDIR /cache
 
-ARG GRAPHQL_TOKEN
-ENV GRAPHQL_TOKEN=${GRAPHQL_TOKEN}
+# Install dependencies
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked --no-dev --no-install-project
 
-# Install Python app dependencies
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+# Copy site files
+COPY tekktrik_dev/ tekktrik_dev/
+COPY core/ core/
+copy blog/ blog/
+COPY contributions/ contributions/
+COPY manage.py manage.py
 
-# Make directories necessary for caching
-COPY scripts/ scripts/
-COPY assets/ assets/
-COPY flask_app/static/img/gh_cards gh_cards/
+# Copy entry point script
+COPY docker/cache/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-WORKDIR /cache/scripts
-
-# Start the cache script
-CMD ["python", "manage_downloads.py"]
+# Start the container
+ENTRYPOINT ["/entrypoint.sh"]
