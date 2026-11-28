@@ -6,11 +6,15 @@
 import datetime as dt
 import json
 import os
+from io import BytesIO
 from typing import Any
 
 import requests
+from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand
 from django.db import transaction
+from django.utils import timezone
+from PIL import Image
 
 from ...models import Language, LanguageEntry, Repository
 
@@ -88,13 +92,29 @@ class Command(BaseCommand):
 
         repositories = json_resp["repositories"]["nodes"]
         for repository_index, repository_info in enumerate(repositories):
+            image_response = requests.get(
+                repository_info["openGraphImageUrl"], timeout=60
+            )
+            pil_image = Image.open(BytesIO(image_response.content))
+
+            created_at = timezone.now()
+            local_created_at = timezone.localtime(created_at)
+            image_tag = local_created_at.strftime("%d%b%Y_%H%M")
+
+            ext = pil_image.format.lower()
+            opengraph_image = ContentFile(
+                image_response.content,
+                name=f"{repository_info['name']}_{image_tag}.{ext}",
+            )
+
             repository = Repository.objects.create(
                 name=repository_info["name"],
                 owner=repository_info["owner"]["login"],
                 url=repository_info["url"],
                 index=repository_index,
-                opengraph_image_url=repository_info["openGraphImageUrl"],
+                opengraph_image=opengraph_image,
                 last_push=dt.datetime.fromisoformat(repository_info["pushedAt"]),
+                created_at=created_at,
             )
 
             languages = [

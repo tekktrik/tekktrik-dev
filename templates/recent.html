@@ -23,7 +23,7 @@
         {% endif %}
             <div class="col-lg-6">
                 <div class="card recent-load-in{% if forloop.counter0|divisibleby:2 %} mb-2 mb-lg-0{% endif %}" style="--delay: {{ forloop.counter0|calc_delay}};">
-                    <a href="{{ repo.url }}" aria-label="Link to {{ repo.name }}"><img src="{{ repo.opengraph_image_url }}" class="card-img-top" id="gh_card_img{{ forloop.counter0 }}" alt="Image summary statistics for {{ repo.name }}"/></a>
+                    <a href="{{ repo.url }}" aria-label="Link to {{ repo.name }}"><img src="{{ repo.opengraph_image.url }}" class="card-img-top" id="gh_card_img{{ forloop.counter0 }}" alt="Image summary statistics for {{ repo.name }}"/></a>
                     <div class="card-body rounded-bottom" style="background-color: white;">
                         {% if repo.language_entries|length == 0 %}
                             <span class="badge" style="background-color: #2F363D;">Other</span>

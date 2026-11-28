@@ -13,6 +13,7 @@ requires-python = ">=3.14.10"
 dependencies = [
     "django~=6.1",
     "django-bootstrap5~=26.4",
+    "django-cleanup>=9.0.0",
     "gunicorn~=27.0",
     "pillow>=13.0.0",
     "requests~=2.34",
