@@ -46,7 +46,7 @@ class Repository(models.Model):
     owner = models.CharField(max_length=128)
     url = models.URLField()
     index = models.SmallIntegerField()
-    opengraph_image_url = models.URLField()
+    opengraph_image = models.ImageField(upload_to="contributions/")
     last_push = models.DateTimeField()
     created_at = models.DateTimeField(default=timezone.now)
 

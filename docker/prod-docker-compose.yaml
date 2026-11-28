@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     volumes:
       - ../data:/app/data
+      - ../media:/app/media
     depends_on:
       - prod-cache
     env_file:
@@ -20,5 +21,6 @@ services:
       dockerfile: docker/cache/Dockerfile
     volumes:
       - ../data:/cache/data
+      - ../media:/cache/media
     env_file:
       - ../.env
