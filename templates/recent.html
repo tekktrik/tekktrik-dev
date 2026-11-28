@@ -1,0 +1,42 @@
+<!--
+    SPDX-FileCopyrightText: 2024 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+{% extends "layout/_layout.html" %}
+
+{% load card_filters %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/animations.css">
+{% endblock %}
+
+{% block title %}Recent Activity{% endblock %}
+
+{% block content %}
+<p class="lead text-center">I've made {{ num_contributions }} contributions in the past {{ duration_days }} days!</p>
+<p class="text-center">Here are some repositories I've contributed to within the last {{ diff_oldest }} year{% if diff_oldest != 1 %}s{% endif %}:</p>
+<div class="container">
+    {% for repo in repos %}
+        {% if forloop.counter0|divisibleby:2 %}
+            <div class="row m-2">
+        {% endif %}
+            <div class="col-lg-6">
+                <div class="card recent-load-in{% if forloop.counter0|divisibleby:2 %} mb-2 mb-lg-0{% endif %}" style="--delay: {{ forloop.counter0|calc_delay}};">
+                    <a href="{{ repo.url }}" aria-label="Link to {{ repo.name }}"><img src="{{ repo.opengraph_image_url }}" class="card-img-top" id="gh_card_img{{ forloop.counter0 }}" alt="Image summary statistics for {{ repo.name }}"/></a>
+                    <div class="card-body rounded-bottom" style="background-color: white;">
+                        {% if repo.language_entries|length == 0 %}
+                            <span class="badge" style="background-color: #2F363D;">Other</span>
+                        {% endif %}
+                        {% for language_entry in repo.language_entries %}
+                            <span class="badge" style="background-color: {{ language_entry.language.background_color }};{% if language_entry.language.black_text%} color: #000000{% endif %};">{{ language_entry.language.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% if not forloop.counter0|divisibleby:2 or forloop.counter == forloop.length %}
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

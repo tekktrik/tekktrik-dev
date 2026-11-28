@@ -7,18 +7,19 @@ export
 .PHONY: start-prod
 start-prod:
 	npm install
-	sh scripts/update_cache.sh
 	docker compose -f docker/prod-docker-compose.yaml build --no-cache
 	docker compose -f docker/prod-docker-compose.yaml up -d
-	sh scripts/delete_artifacts.sh
 
 .PHONY: start-test
 start-test:
 	npm install
-	sh scripts/update_cache.sh
 	docker compose -f docker/test-docker-compose.yaml build --no-cache
 	docker compose -f docker/test-docker-compose.yaml up -d
-	sh scripts/delete_artifacts.sh
+
+.PHONY: start-debug
+start-debug:
+	uv run python manage.py sync_contributions
+	uv run python manage.py runserver 127.0.0.1:8001
 
 .PHONY: stop-prod
 stop-prod:
@@ -30,12 +31,12 @@ stop-test:
 
 .PHONY: lint
 lint:
-	pre-commit run ruff --all-files
+	uv run pre-commit run ruff --all-files
 
 .PHONY: format
 format:
-	pre-commit run ruff-format --all-files
+	uv run pre-commit run ruff-format --all-files
 
 .PHONY: check
 check:
-	pre-commit run --all-files
+	uv run pre-commit run --all-files

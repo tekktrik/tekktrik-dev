@@ -1,0 +1,107 @@
+<!--
+    SPDX-FileCopyrightText: 2024 Alec Delaney
+    SPDX-License-Identifier: MIT
+-->
+
+{% extends "layout/_layout.html" %}
+
+{% load static %}
+
+{% block head %}<link rel="stylesheet" href="/static/css/animations.css">{% endblock %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+    <div class="fade-fly-in" style="--delay: 0s">
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-6 col-xl-4 mb-3 mb-lg-0">
+                <img class="img-fluid profile-image" src="{% static 'img/tekkno_wings.jpg' %}" alt="Image of myself (Alec) with light-up wings behind me">
+            </div>
+            <div class="col-lg-6 col-xl-8 align-items-center">
+                <h2>About Me:</h2>
+                <p class="lead">
+                    I'm an hardware engineer and software developer from the Boston area.
+                    I love creating free and open source projects that others can use.
+                    I also love playing Dungeons and Dragons, making cocktails, running,
+                    and cycling. If you're hoping to make or collaborate on anything
+                    relating to...
+                </p>
+                <ul>
+                    <li class="lead">Robotics</li>
+                    <li class="lead">Automation</li>
+                    <li class="lead">Software Engineering</li>
+                    <li class="lead">Embedded Design</li>
+                    <li class="lead">CircuitPython</li>
+                    <li class="lead">DevOps</li>
+                    <li class="lead">Open Source Hardware/Software</li>
+                </ul>
+                <p class="lead"> ...then let me know!  I'd love to talk about it!</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+
+    <div class="fade-fly-in" style="--delay: 1s">
+        <h2>Professional Experience</h2>
+        <div class="accordion" id="jobAccordion">
+            {% for employer, jobs in employments %}
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{ forloop.counter0 }}">
+                            <strong>{{ employer }}</strong>:
+                            {% with first_role=jobs|last last_role=jobs|first%}
+                                ({{ first_role.simple_start_date }} - {{ last_role.simple_end_date }})
+                            {% endwith %}
+                        </button>
+                    </h3>
+                    <div class="accordion-collapse collapse" id="job{{ forloop.counter0 }}" data-bs-parent="#jobAccordion">
+                        <div class="accordion-body">
+                            {% for job in jobs %}
+                                <div>
+                                    <h4>{{ job.title }}</h4>
+                                    <h6>{{ job.simple_start_date }} - {{ job.simple_end_date }}</h6>
+                                    <p>[<i>{{ job.employment_type }}</i>]</p>
+                                    <ul class="list-group">
+                                        {% for duty in job.duties_list %}
+                                        <li class="list-group-item">
+                                            {{ duty }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% for skill in job.skills_list %}
+                                    <span class="badge bg-primary my-2">{{ skill }}</span>
+                                {% endfor %}
+                                {% if forloop.counter0 != jobs_list|length %}<hr/>{% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <hr/>
+    </div>
+
+    <div class="fade-fly-in" style="--delay: 2s">
+        <h2>Education</h2>
+        <div class="container">
+            <div class="row m-2">
+                {% for education in educations %}
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ education.school }}</h4>
+                            <h5 class="card-subtitle">{{ education.degree }}</h5>
+                            <p class="card-text">{{ education.major }}
+                                {% if education.focus is not none %} - {{ education.focus }}{% endif %}</p>
+                            <p>GPA: {{ education.gpa }}</p>
+                            <p>{{ education.location }}</p>
+                        </div>
+                        <div class="card-footer">{{ education.start_year }} - {{ education.end_year }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

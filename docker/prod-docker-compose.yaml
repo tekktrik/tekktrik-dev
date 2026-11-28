@@ -9,22 +9,16 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - prod-contrib:/app/assets/contrib
-      - prod-gh_cards:/app/flask_app/static/img/gh_cards
+      - ../data:/app/data
     depends_on:
       - prod-cache
+    env_file:
+      - ../.env
   prod-cache:
     build:
       context: ../
       dockerfile: docker/cache/Dockerfile
-      args:
-        GRAPHQL_TOKEN: ${GRAPHQL_TOKEN}
     volumes:
-      - prod-contrib:/cache/assets/contrib
-      - prod-gh_cards:/cache/gh_cards
+      - ../data:/cache/data
     env_file:
       - ../.env
-
-volumes:
-  prod-contrib:
-  prod-gh_cards:
